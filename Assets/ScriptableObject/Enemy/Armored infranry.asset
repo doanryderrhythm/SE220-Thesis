@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Armored infranry
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
   enemyType: 0
-  health: 20
+  health: 25
   speed: 0
   reward: 0
-  armor: 5
+  armor: 10
   waypoints: []

@@ -4,7 +4,6 @@ public class Projectile : MonoBehaviour
 {
     public float damage = 5f;
     public bool piercing = false;
-    public float lifetime = 4f;
 
     void Start()
     {
@@ -20,7 +19,7 @@ public class Projectile : MonoBehaviour
 
         enemy.TakeDamage(damage, piercing);
 
-        if (!piercing)
+        
             Destroy(gameObject);
     }
 }

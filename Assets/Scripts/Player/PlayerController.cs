@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static Gun;
 
 public class PlayerController : MonoBehaviour
 {
@@ -131,75 +130,20 @@ public class PlayerController : MonoBehaviour
         coyoteTime = ValueStorer.coyoteTime;
     }
 
-    [SerializeField] bool isGunEquipped = false;
-    [SerializeField] GunStats gunStats;
-
-    [SerializeField] GunType gunType;
-    [SerializeField] float shootSpeed;
-    [SerializeField] float shootRate;
-    [SerializeField] GameObject bulletPrefab;
-
     void Start()
     {
-        
+
     }
-
-    [SerializeField] Transform sideBarrel;
-    [SerializeField] Transform upBarrel;
-    [SerializeField] Transform downBarrel;
-
-    private float directionRotation = 0f;
-    private float totalShootingTime = 0f;
 
     void Update()
     {
         moveRate = playerRunInput.action.ReadValue<float>();
-        if (playerRunInput.action.IsPressed())
-        {
-            if (moveRate >= 0f) directionRotation = 0f;
-            else directionRotation = 180f;
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x, directionRotation, transform.eulerAngles.z);
-        }
-
-        if (isGunEquipped)
-        {
-            totalShootingTime += Time.deltaTime;
-            if (totalShootingTime >= shootRate)
-            {
-                totalShootingTime -= shootRate;
-                Transform barrel = GetBarrel();
-                GameObject bulletObject = Instantiate(bulletPrefab, barrel.position, Quaternion.identity);
-                Bullet bullet = bulletObject.GetComponent<Bullet>();
-                if (bullet != null)
-                {
-                    bullet.speed = shootSpeed;
-                    bullet.direction = (barrel.position - transform.position).normalized;
-                }
-            }
-        }
-
         ManageJump();
 
         if (Keyboard.current != null && Keyboard.current.rKey.wasPressedThisFrame)
         {
             DestroyPlayer();
         }
-    }
-    
-    Transform GetBarrel()
-    {
-        if (!gunStats)
-        {
-            return sideBarrel;
-        }
-
-        switch (gunStats.gunType)
-        {
-            case GunType.GUN_SIDE: return sideBarrel;
-            case GunType.GUN_DOWN: return downBarrel;
-            case GunType.GUN_UP: return upBarrel;
-        }
-        return sideBarrel;
     }
 
     void FixedUpdate()
@@ -214,31 +158,9 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    void BeginShooting()
-    {
-        if (!gunStats)
-        {
-            return;
-        }
-        
-        isGunEquipped = true;
-        gunType = gunStats.gunType;
-        shootSpeed = gunStats.shootSpeed;
-        shootRate = gunStats.shootRate;
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag(ValueStorer.gunTag))
-        {
-            Gun gun = collision.GetComponent<Gun>();
-            if (gun != null)
-            {
-                gunStats = gun.GetStats();
-                BeginShooting();
-                Destroy(gun.gameObject);
-            }
-        }
+        
     }
 
     private void OnTriggerStay2D(Collider2D collision)

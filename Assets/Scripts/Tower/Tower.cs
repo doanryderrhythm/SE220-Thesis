@@ -53,15 +53,15 @@ public class Tower : MonoBehaviour
 
         fireCooldown -= Time.deltaTime;
         if (fireCooldown <= 0f)
-        {Debug.Log("Searching for enemies...");
+        {
             Transform target = FindNearestEnemy();
             if (target != null)
-            {  Debug.Log("Enemy found");
+            {  
                 AimAt(target);
                 Fire();
                 fireCooldown = 1f / fireRate;
             }
-            else Debug.Log("Enemy not found");
+          
         }
         
     }
