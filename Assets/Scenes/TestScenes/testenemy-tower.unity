@@ -1366,13 +1366,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pierce
       objectReference: {fileID: 0}
+    - target: {fileID: 2480760827578829403, guid: bf8da6a1cdbea4e40b7a5490cbd72d2f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5801163390481794216, guid: bf8da6a1cdbea4e40b7a5490cbd72d2f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.47
+      value: -2.99
       objectReference: {fileID: 0}
     - target: {fileID: 5801163390481794216, guid: bf8da6a1cdbea4e40b7a5490cbd72d2f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.71
+      value: -1.7
       objectReference: {fileID: 0}
     - target: {fileID: 5801163390481794216, guid: bf8da6a1cdbea4e40b7a5490cbd72d2f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1484,6 +1488,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Infrant
       objectReference: {fileID: 0}
+    - target: {fileID: 4326933986089438939, guid: ff530d228960b3a428d1206ca68a33ba, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8238959435664054819, guid: ff530d228960b3a428d1206ca68a33ba, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.62
@@ -1540,6 +1548,10 @@ PrefabInstance:
     - target: {fileID: 2182140115748932019, guid: 7e1c26dd5f8ee634085b69cd4cc27c88, type: 3}
       propertyPath: m_Name
       value: Normal
+      objectReference: {fileID: 0}
+    - target: {fileID: 2182140115748932019, guid: 7e1c26dd5f8ee634085b69cd4cc27c88, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2828792955821069502, guid: 7e1c26dd5f8ee634085b69cd4cc27c88, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1642,6 +1654,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Archer
       objectReference: {fileID: 0}
+    - target: {fileID: 5064403654378457532, guid: 9af01fa62a01129488e4d63da7c1423d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1658,6 +1674,10 @@ PrefabInstance:
     - target: {fileID: 5647302049507703727, guid: bd0c0715a49f80345b2f6f335796423f, type: 3}
       propertyPath: m_Name
       value: Sniper
+      objectReference: {fileID: 0}
+    - target: {fileID: 5647302049507703727, guid: bd0c0715a49f80345b2f6f335796423f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7339636133290756742, guid: bd0c0715a49f80345b2f6f335796423f, type: 3}
       propertyPath: m_LocalPosition.x
