@@ -1,5 +1,6 @@
 using UnityEngine;
-using System.Collections; // nếu dùng Coroutine
+
+using System.Diagnostics; // nếu dùng Coroutine
 
 public enum EnemyType
 {
@@ -26,6 +27,7 @@ public class Enemy : MonoBehaviour
     {
         sr = GetComponent<SpriteRenderer>();
         setupEnemyStats();
+      
     }
 
     void Update()
@@ -40,27 +42,55 @@ public class Enemy : MonoBehaviour
             waypointIndex = (waypointIndex + 1) % waypoints.Length;
         }
     }
+   
+public void TakeDamage(float damage, bool pierce)
+{
+    UnityEngine.Debug.Log($"Before → HP: {health}, Armor: {armor}");
 
-    public void TakeDamage(float damage, bool pierce)
+    if (type == EnemyType.ArmoredInfantry)
     {
-        if (type == EnemyType.ArmoredInfantry && !pierce && armor > 0f)
+        if (pierce)
         {
-            float armorAbsorb = Mathf.Min(armor, damage);
-            armor -= armorAbsorb;
-            damage -= armorAbsorb;
+
+            health -= damage;
         }
-
-        health -= damage;
-
-        if (health <= 0f)
+        else
         {
-            Die();
+            if (armor > 0)
+            {
+                float dmgToArmor = Mathf.Min(damage, armor);
+                armor -= dmgToArmor;
+
+                float remaining = damage - dmgToArmor;
+
+                if (remaining > 0)
+                {
+                    health -= remaining;
+                }
+            }
+            else
+            {
+                health -= damage;
+            }
         }
     }
+    else
+    {
+        health -= damage;
+    }
+
+    UnityEngine.Debug.Log($"After → HP: {health}, Armor: {armor}");
+
+    if (health <= 0f)
+    {
+        Die();
+    }
+}
+
 
  void Die()
 {
-    Debug.Log("Enemy died");
+  
     if (sr != null)
     {
         sr.color = Color.red;
@@ -77,6 +107,7 @@ public class Enemy : MonoBehaviour
             type = enemyStats.enemyType;
             health = enemyStats.health;
             speed = enemyStats.speed;
+            armor = enemyStats.armor;
         }
     }
 }
