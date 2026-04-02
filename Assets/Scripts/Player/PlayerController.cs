@@ -1,3 +1,4 @@
+using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static Gun;
@@ -82,6 +83,8 @@ public class PlayerController : MonoBehaviour
             leaveDetected = true;
 
             jumpBufferTime = 0;
+
+            ShootBullet(true);
         }
         else if (playerJumpInput.action.WasReleasedThisFrame() && rb.linearVelocityY > 0)
         {
@@ -167,14 +170,7 @@ public class PlayerController : MonoBehaviour
             if (totalShootingTime >= shootRate)
             {
                 totalShootingTime -= shootRate;
-                Transform barrel = GetBarrel();
-                GameObject bulletObject = Instantiate(bulletPrefab, barrel.position, Quaternion.identity);
-                Bullet bullet = bulletObject.GetComponent<Bullet>();
-                if (bullet != null)
-                {
-                    bullet.speed = shootSpeed;
-                    bullet.direction = (barrel.position - transform.position).normalized;
-                }
+                ShootBullet();
             }
         }
 
@@ -183,6 +179,42 @@ public class PlayerController : MonoBehaviour
         if (Keyboard.current != null && Keyboard.current.rKey.wasPressedThisFrame)
         {
             DestroyPlayer();
+        }
+    }
+
+    void ShootBullet(bool isMultiple = false)
+    {
+        Transform barrel = GetBarrel();
+        Vector2 direction = (barrel.position - transform.position).normalized;
+
+        InstantiateBullet(barrel.position);
+        if (isMultiple)
+        {
+            if (direction.x >= -0.2f && direction.x <= 0.2f)
+            {
+                InstantiateBullet(barrel.position - new Vector3(-0.2f, 0, 0));
+                InstantiateBullet(barrel.position - new Vector3(-0.1f, 0, 0));
+                InstantiateBullet(barrel.position - new Vector3(0.1f, 0, 0));
+                InstantiateBullet(barrel.position - new Vector3(0.2f, 0, 0));
+            }
+            else if (direction.y >= -0.2f && direction.y <= 0.2f)
+            {
+                InstantiateBullet(barrel.position - new Vector3(0, -0.2f, 0));
+                InstantiateBullet(barrel.position - new Vector3(0, -0.1f, 0));
+                InstantiateBullet(barrel.position - new Vector3(0, 0.1f, 0));
+                InstantiateBullet(barrel.position - new Vector3(0, 0.2f, 0));
+            }
+        }
+    }
+
+    void InstantiateBullet(Vector3 pos)
+    {
+        GameObject bulletObject = Instantiate(bulletPrefab, pos, Quaternion.identity);
+        Bullet bullet = bulletObject.GetComponent<Bullet>();
+        if (bullet != null)
+        {
+            bullet.speed = shootSpeed;
+            bullet.direction = (pos - transform.position).normalized;
         }
     }
 
