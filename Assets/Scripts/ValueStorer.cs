@@ -29,4 +29,8 @@ public class ValueStorer : MonoBehaviour
     public static float coyoteTime = 0.06f;
     public static float bufferTime = 0.12f;
     #endregion
+
+    #region TAGS
+    public const string gunTag = "Gun";
+    #endregion
 }
