@@ -7,6 +7,9 @@ public class Bullet : MonoBehaviour
     public Vector2 direction;
     public float speed;
 
+    public float damage = 5f;
+    public bool piercing = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,5 +25,16 @@ public class Bullet : MonoBehaviour
     private void FixedUpdate()
     {
         rb.linearVelocity = new Vector2(direction.x * speed, direction.y * speed);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("Enemy")) return;
+
+        Enemy enemy = collision.GetComponent<Enemy>();
+        if (enemy == null) return;
+
+        enemy.TakeDamage(damage, piercing);
+        Destroy(gameObject);
     }
 }
