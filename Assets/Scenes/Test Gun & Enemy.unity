@@ -1528,6 +1528,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ArmorInfrant
       objectReference: {fileID: 0}
+    - target: {fileID: 7962999915511074928, guid: 657dfdf15da824142806e00894d52609, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1544,6 +1548,10 @@ PrefabInstance:
     - target: {fileID: 4326933986089438939, guid: ff530d228960b3a428d1206ca68a33ba, type: 3}
       propertyPath: m_Name
       value: Infrant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4326933986089438939, guid: ff530d228960b3a428d1206ca68a33ba, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8238959435664054819, guid: ff530d228960b3a428d1206ca68a33ba, type: 3}
       propertyPath: m_LocalPosition.x

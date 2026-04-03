@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d4926a296d9b3b40be8b89583e3f0ed, type: 3}
-  m_Name: PiercingTowerData
+  m_Name: Nexus
   m_EditorClassIdentifier: Assembly-CSharp::TowerStats
-  towerType: 0
-  towerHP: 10
-  range: 5
-  fireRate: 1
-  projectileDamage: 5
-  projectilePierces: 1
+  towerType: 3
+  towerHP: 50
+  range: 0
+  fireRate: 0
+  projectileDamage: 0
+  projectilePierces: 0
   cost: 0
   upgradeCost: 0

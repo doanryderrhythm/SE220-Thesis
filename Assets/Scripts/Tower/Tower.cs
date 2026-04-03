@@ -5,7 +5,8 @@ public enum TowerType
 {
     Normal,
     Piercing,
-    Sniper
+    Sniper,
+    Nexus
 }
 
 public class Tower : MonoBehaviour
@@ -18,13 +19,13 @@ public class Tower : MonoBehaviour
     [Header("Targeting")]
     public string enemyTag = "Enemy";
     [SerializeField] private TowerStats towerStats; // Reference to the ScriptableObject for stats
-    [Header("Manual config (nếu không dùng TowerStats)")]
     public float range = 5f;
     public float fireRate = 1f;
     public float projectileDamage = 5f;
     public bool projectilePierces = false;
     private bool isMouseOver = false;
     private float fireCooldown;
+    private float towerHP;
     private float cost;
     private float upgradeCost;
 
@@ -42,6 +43,7 @@ public class Tower : MonoBehaviour
             fireRate = towerStats.fireRate;
             projectileDamage = towerStats.projectileDamage;
             projectilePierces = towerStats.projectilePierces;
+            towerHP = towerStats.towerHP;
         }
      
       
@@ -61,7 +63,7 @@ public class Tower : MonoBehaviour
                 Fire();
                 fireCooldown = 1f / fireRate;
             }
-          
+ 
         }
         
     }
@@ -100,7 +102,7 @@ Transform FindNearestEnemy(){
         GameObject spawned = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
         Projectile p = spawned.GetComponent<Projectile>();
         if (p != null)
-        {
+        {  
             p.damage = projectileDamage;
             p.piercing = projectilePierces;
         }
@@ -175,5 +177,13 @@ Transform FindNearestEnemy(){
         GUI.DrawTexture(new Rect(p1.x, p1.y - width / 2, length, width), Texture2D.whiteTexture);
         GUI.matrix = matrix;
     }
+    public void TakeDamage(float damage)
+    {
+        towerHP -= damage;
+        if (towerHP <= 0f)
+        {
+            Destroy(gameObject);
+        }
+    }
+    
 }
-

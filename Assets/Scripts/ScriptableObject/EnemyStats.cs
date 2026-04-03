@@ -10,8 +10,12 @@ public class EnemyStats : ScriptableObject
     public float speed;
     public float reward;
     public float armor;
-    public Transform[] waypoints;
+    public float damage;
+    public float attackRate;
+    public float attackcooldown;
+    public float attackRange;
+    public Tower targetedTower; // Reference to the target tower (if needed)
+ 
     
 }
-
 

@@ -6,6 +6,7 @@ using UnityEngine;
 public class TowerStats : ScriptableObject
 {
     public TowerType towerType;
+    public float towerHP;
     public float range ;
     public float fireRate ;
     public float projectileDamage ;
