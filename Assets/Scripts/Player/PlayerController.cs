@@ -156,6 +156,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(jumpCount);
+
         moveRate = playerRunInput.action.ReadValue<float>();
         if (playerRunInput.action.IsPressed())
         {
@@ -184,6 +186,9 @@ public class PlayerController : MonoBehaviour
 
     void ShootBullet(bool isMultiple = false)
     {
+        if (gunStats == null)
+            return;
+
         Transform barrel = GetBarrel();
         Vector2 direction = (barrel.position - transform.position).normalized;
 
