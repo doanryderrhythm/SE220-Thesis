@@ -23,6 +23,7 @@ public class ValueStorer : MonoBehaviour
     #region LAYER MASKS
     public const string groundLM = "Default";
     public const string transparentLM = "TransparentFX";
+    public const string enemyLM = "Enemy";
     #endregion
 
     #region VALUES

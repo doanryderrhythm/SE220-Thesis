@@ -248,7 +248,12 @@ public class PlayerController : MonoBehaviour
 
     void DestroyPlayer()
     {
-
+        isDead = true;
+        if (GameManager.Instance)
+        {
+            GameManager.Instance.StartCoroutine(GameManager.Instance.RespawnPlayer());
+        }
+        Destroy(gameObject);
     }
 
     void BeginShooting()
@@ -264,6 +269,8 @@ public class PlayerController : MonoBehaviour
         shootRate = gunStats.shootRate;
     }
 
+    bool isDead = false;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag(ValueStorer.gunTag))
@@ -275,6 +282,15 @@ public class PlayerController : MonoBehaviour
                 BeginShooting();
                 Destroy(gun.gameObject);
             }
+        }
+        else if (LayerMask.LayerToName(collision.gameObject.layer) == ValueStorer.enemyLM)
+        {
+            if (isDead)
+            {
+                return;
+            }
+
+            DestroyPlayer();
         }
     }
 
