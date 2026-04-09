@@ -15,11 +15,19 @@ public class Projectile : MonoBehaviour
         if (!other.CompareTag("Enemy")) return;
 
         Enemy enemy = other.GetComponent<Enemy>();
-        if (enemy == null) return;
+        EliteEnemy eliteEnemy = other.GetComponent<EliteEnemy>();
+        if (enemy == null && eliteEnemy == null) return;
 
-        enemy.TakeDamage(damage, piercing);
+        if (enemy != null)
+        {
+            enemy.TakeDamage(damage, piercing);
+        }
 
-        
-            Destroy(gameObject);
+        if (eliteEnemy != null)
+        {
+            eliteEnemy.TakeDamage(damage, piercing);
+        }
+
+        Destroy(gameObject);
     }
 }

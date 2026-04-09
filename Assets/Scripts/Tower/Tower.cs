@@ -1,6 +1,6 @@
 using System.Dynamic;
 using UnityEngine;
-
+using System.Collections;
 public enum TowerType
 {
     Normal,
@@ -28,10 +28,19 @@ public class Tower : MonoBehaviour
     private float towerHP;
     private float cost;
     private float upgradeCost;
+    private bool canShoot = true;
+    private SpriteRenderer sr;
+    private Color originalColor;
 
     void Awake()
     {
+        sr = GetComponent<SpriteRenderer>();
+        if (sr != null)
+    {
+        originalColor = sr.color; 
+    }
         SetupTowerStats();
+        
     }
 
     void SetupTowerStats()
@@ -52,7 +61,7 @@ public class Tower : MonoBehaviour
     void Update()
     {
         if (firePoint == null || projectilePrefab == null) return;
-
+if (!canShoot||towerType == TowerType.Nexus) return;
         fireCooldown -= Time.deltaTime;
         if (fireCooldown <= 0f)
         {
@@ -135,6 +144,31 @@ Transform FindNearestEnemy(){
         isMouseOver = false;
     }
 
+
+public void DisableShooting(float duration)
+    {
+        StopCoroutine("DisableRoutine"); 
+        StartCoroutine(DisableRoutine(duration));
+    }
+
+    private IEnumerator DisableRoutine(float duration)
+    {
+        canShoot = false;
+        if (sr != null) sr.color = Color.gray; 
+
+        yield return new WaitForSeconds(duration);
+        canShoot = true;
+        if (sr != null) sr.color = originalColor;
+    }
+     public void TakeDamage(float damage)
+    {
+        towerHP -= damage;
+        if (towerHP <= 0f)
+        {
+            Destroy(gameObject);
+        }
+    }
+    
 //show tower range
     void OnGUI()
     {
@@ -177,13 +211,4 @@ Transform FindNearestEnemy(){
         GUI.DrawTexture(new Rect(p1.x, p1.y - width / 2, length, width), Texture2D.whiteTexture);
         GUI.matrix = matrix;
     }
-    public void TakeDamage(float damage)
-    {
-        towerHP -= damage;
-        if (towerHP <= 0f)
-        {
-            Destroy(gameObject);
-        }
-    }
-    
 }
