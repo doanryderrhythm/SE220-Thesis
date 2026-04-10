@@ -41,8 +41,7 @@ public class Enemy : MonoBehaviour
         attackcooldown -= Time.deltaTime;
         if (attackcooldown <= 0f)
         {
-            float actualDamage = (damage > 0) ? damage : 1f; 
-            targetedtower.TakeDamage(actualDamage);
+            targetedtower.TakeDamage(damage);
             float interval = (attactrate > 0) ? (1f / attactrate) : 1f;
             attackcooldown = interval; 
         }

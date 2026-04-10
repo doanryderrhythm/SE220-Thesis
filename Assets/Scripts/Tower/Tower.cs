@@ -32,6 +32,10 @@ public class Tower : MonoBehaviour
     private SpriteRenderer sr;
     private Color originalColor;
 
+    [Header("HP Bar Settings")]
+    [SerializeField] private Transform hpBarFill;
+    public Transform hpBarPivot;
+
     void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
@@ -60,8 +64,8 @@ public class Tower : MonoBehaviour
 
     void Update()
     {
-        if (firePoint == null || projectilePrefab == null) return;
-if (!canShoot||towerType == TowerType.Nexus) return;
+     if (firePoint == null || projectilePrefab == null) return;
+    if (!canShoot||towerType == TowerType.Nexus) return;
         fireCooldown -= Time.deltaTime;
         if (fireCooldown <= 0f)
         {
@@ -210,5 +214,18 @@ public void DisableShooting(float duration)
         GUIUtility.RotateAroundPivot(angle, p1);
         GUI.DrawTexture(new Rect(p1.x, p1.y - width / 2, length, width), Texture2D.whiteTexture);
         GUI.matrix = matrix;
+    }
+
+    void UpdateHPBar()
+    {
+       if (hpBarPivot != null)
+    {
+        float hpPercentage = Mathf.Clamp01(towerHP / towerStats.towerHP);
+        hpBarPivot.localScale = new Vector3(hpPercentage, 1f, 1f);
+    }
+    }
+    void LateUpdate()
+    {
+        UpdateHPBar();
     }
 }
