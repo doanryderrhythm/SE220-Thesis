@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: NormalTowerData
   m_EditorClassIdentifier: Assembly-CSharp::TowerStats
   towerType: 0
+  towerHP: 20
   range: 4
   fireRate: 1
   projectileDamage: 5

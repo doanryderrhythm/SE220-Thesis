@@ -1,11 +1,12 @@
 using System.Dynamic;
 using UnityEngine;
-
+using System.Collections;
 public enum TowerType
 {
     Normal,
     Piercing,
-    Sniper
+    Sniper,
+    Nexus
 }
 
 public class Tower : MonoBehaviour
@@ -18,19 +19,28 @@ public class Tower : MonoBehaviour
     [Header("Targeting")]
     public string enemyTag = "Enemy";
     [SerializeField] private TowerStats towerStats; // Reference to the ScriptableObject for stats
-    [Header("Manual config (nếu không dùng TowerStats)")]
     public float range = 5f;
     public float fireRate = 1f;
     public float projectileDamage = 5f;
     public bool projectilePierces = false;
     private bool isMouseOver = false;
     private float fireCooldown;
+    private float towerHP;
     private float cost;
     private float upgradeCost;
+    private bool canShoot = true;
+    private SpriteRenderer sr;
+    private Color originalColor;
 
     void Awake()
     {
+        sr = GetComponent<SpriteRenderer>();
+        if (sr != null)
+    {
+        originalColor = sr.color; 
+    }
         SetupTowerStats();
+        
     }
 
     void SetupTowerStats()
@@ -42,6 +52,7 @@ public class Tower : MonoBehaviour
             fireRate = towerStats.fireRate;
             projectileDamage = towerStats.projectileDamage;
             projectilePierces = towerStats.projectilePierces;
+            towerHP = towerStats.towerHP;
         }
      
       
@@ -50,7 +61,7 @@ public class Tower : MonoBehaviour
     void Update()
     {
         if (firePoint == null || projectilePrefab == null) return;
-
+if (!canShoot||towerType == TowerType.Nexus) return;
         fireCooldown -= Time.deltaTime;
         if (fireCooldown <= 0f)
         {
@@ -61,7 +72,7 @@ public class Tower : MonoBehaviour
                 Fire();
                 fireCooldown = 1f / fireRate;
             }
-          
+ 
         }
         
     }
@@ -100,7 +111,7 @@ Transform FindNearestEnemy(){
         GameObject spawned = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
         Projectile p = spawned.GetComponent<Projectile>();
         if (p != null)
-        {
+        {  
             p.damage = projectileDamage;
             p.piercing = projectilePierces;
         }
@@ -133,6 +144,31 @@ Transform FindNearestEnemy(){
         isMouseOver = false;
     }
 
+
+public void DisableShooting(float duration)
+    {
+        StopCoroutine("DisableRoutine"); 
+        StartCoroutine(DisableRoutine(duration));
+    }
+
+    private IEnumerator DisableRoutine(float duration)
+    {
+        canShoot = false;
+        if (sr != null) sr.color = Color.gray; 
+
+        yield return new WaitForSeconds(duration);
+        canShoot = true;
+        if (sr != null) sr.color = originalColor;
+    }
+     public void TakeDamage(float damage)
+    {
+        towerHP -= damage;
+        if (towerHP <= 0f)
+        {
+            Destroy(gameObject);
+        }
+    }
+    
 //show tower range
     void OnGUI()
     {
@@ -176,4 +212,3 @@ Transform FindNearestEnemy(){
         GUI.matrix = matrix;
     }
 }
-
