@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
   enemyType: 0
   health: 25
-  speed: 0
+  speed: 2
   reward: 0
   armor: 10
-  waypoints: []
+  damage: 0
+  attackRate: 0
+  attackcooldown: 0
+  attackRange: 0
+  targetedTower: {fileID: 0}
