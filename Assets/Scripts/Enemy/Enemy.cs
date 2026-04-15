@@ -8,7 +8,6 @@ public enum EnemyType
     Archer
 }
 
-
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private EnemyStats enemyStats; // Reference to the ScriptableObject for stats
@@ -22,18 +21,15 @@ public class Enemy : MonoBehaviour
     private float attactrate;
    private float attackRange; // Prefab for visualizing attack range (optional)
     private float attackcooldown;
-    private float maxhealth;
-    private float basedamage;
-    public bool isBuffed = false; // Flag to track if the enemy is currently buffed
     [SerializeField] private GameObject arrowPrefab;
     [SerializeField] private LayerMask towerLayer;
     private Tower targetedtower; // Reference to the target tower (if needed)
 
        public Transform[] waypoints;
     private int waypointIndex = 0;
-public int enenmyStatus;
+
     private SpriteRenderer sr; 
- [SerializeField] private SpriteRenderer Si; // Reference to the arrow prefab for Archer attacks
+
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
@@ -42,10 +38,6 @@ public int enenmyStatus;
 
   void Update()
 {
-    Si.gameObject.SetActive(false); // Hide the status indicator by default
-    
-   SetEnemyStatus(enenmyStatus); // Update the enemy status based on current conditions
-        ShowEnemyStatus(enenmyStatus); // Update the visual representation of the enemy status  
     if (targetedtower != null)
     {
         attackcooldown -= Time.deltaTime;
@@ -103,9 +95,6 @@ public int enenmyStatus;
         damage = enemyStats.damage; 
         attactrate = enemyStats.attackRate;
         attackRange = enemyStats.attackRange;
-        maxhealth = health;
-        basedamage = damage;
-        enenmyStatus =2;
         }
     }
     void MoveTowardsTarget()
@@ -144,6 +133,8 @@ private void PerformAttack()
        
 
         GameObject arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
+        Debug.Log("Arrow instantiated at position: " + transform.position);
+
         Arrow arrowScript = arrow.GetComponent<Arrow>();
         if (arrowScript != null)
         {
@@ -172,49 +163,5 @@ private void DetectTowerInRange()
             attackcooldown = 0f;
         }
     }
-    }
-    public void SetEnemyStatus(int status)
-    {
-        enenmyStatus = status;
-        if(health <= maxhealth * 0.3f)
-        {
-            enenmyStatus = 1; // NearlyDeath
-        }
-        else if(isBuffed)
-        {
-            enenmyStatus = 0; // AttackBuff
-        }
-        else
-        {
-            enenmyStatus = 2; // Normal
-        }
-    }
-    public void ShowEnemyStatus(int status)
-    {
-
-        switch (status)
-        {
-            case 0: // AttackBuff
-             if(Si != null){
-                Si.color = Color.yellow;
-                Si.gameObject.SetActive(true); }
-                break;
-            case 1: // NearlyDeath
-               if(Si != null){
-                Si.color = Color.red;
-                Si.gameObject.SetActive(true); }
-                break;
-            case 2: // Normal
-               if(Si != null){
-
-                Si.gameObject.SetActive(false); }
-                break;
-        }
-    }
-       public void ApplyDamageBuff(float multiplier)
-    {
-        if (isBuffed) return; 
-        damage *= multiplier; 
-        isBuffed = true;      
     }
 }
