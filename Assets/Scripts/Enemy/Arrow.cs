@@ -18,21 +18,20 @@ public class Arrow : MonoBehaviour
 
     void Update()
     {
-        if (target == null)
+  if (target == null)
         {
             Destroy(gameObject);
             return;
         }
-
-        // Move the arrow towards the target
         Vector3 direction = (target.position - transform.position).normalized;
         transform.position += direction * speed * Time.deltaTime;
-
-        // Check if the arrow has reached the target
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, angle);
         if (Vector3.Distance(transform.position, target.position) < 0.2f)
         {
             HitTarget();
         }
+      
     }
 
     private void HitTarget()
