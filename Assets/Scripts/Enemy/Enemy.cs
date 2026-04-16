@@ -133,8 +133,6 @@ private void PerformAttack()
        
 
         GameObject arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
-        Debug.Log("Arrow instantiated at position: " + transform.position);
-
         Arrow arrowScript = arrow.GetComponent<Arrow>();
         if (arrowScript != null)
         {
