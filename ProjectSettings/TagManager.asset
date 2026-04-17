@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Gun
   - Tower
+  - Coin
   layers:
   - Default
   - TransparentFX
@@ -18,8 +19,8 @@ TagManager:
   - Bullet
   - Enemy
   - Tower
-  - 
-  - 
+  - Coin
+  - Gun
   - 
   - 
   - 
