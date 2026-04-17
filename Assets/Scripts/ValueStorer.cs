@@ -33,5 +33,6 @@ public class ValueStorer : MonoBehaviour
 
     #region TAGS
     public const string gunTag = "Gun";
+    public const string coinTag = "Coin";
     #endregion
 }

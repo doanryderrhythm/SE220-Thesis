@@ -77,9 +77,10 @@ GameObject:
   - component: {fileID: 8287881224271133591}
   - component: {fileID: 8653652732361606439}
   - component: {fileID: 8256317923929693038}
+  - component: {fileID: 3915591513084514171}
   m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -215,6 +216,24 @@ MonoBehaviour:
   sideBarrel: {fileID: 3731111766976186741}
   upBarrel: {fileID: 5371703596283955}
   downBarrel: {fileID: 4284153603285660442}
+  shootSpeedBonus: 0
+  damageBonus: 0
+--- !u!114 &3915591513084514171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2611789595194453044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edc7a8df5ad8394dab962e3c1aaba95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemPickUp
+  playerPickUpInput: {fileID: -3401359847826014981, guid: 4deb3af7ec3068f49bf1350c4b5f8dc2, type: 3}
+  currentGun: {fileID: 0}
+  pendingGun: {fileID: 0}
+  canPickUpGun: 0
 --- !u!1 &3985425887276335561
 GameObject:
   m_ObjectHideFlags: 0
