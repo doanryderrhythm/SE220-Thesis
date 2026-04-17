@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Gun
   - Tower
+  - Status
   layers:
   - Default
   - TransparentFX

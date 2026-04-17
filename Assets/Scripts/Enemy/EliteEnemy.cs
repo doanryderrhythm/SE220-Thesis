@@ -20,6 +20,7 @@ public class EliteEnemy : MonoBehaviour
     private float damage;
     private float attackRate;
     private float attackcooldown;
+    private float maxhealth;
     private Tower targetedtower; // Reference to the target tower (if needed)
     public Transform[] waypoints;
     private int waypointIndex = 0;
@@ -36,15 +37,21 @@ public class EliteEnemy : MonoBehaviour
     private float buffTimer = 0f;        
     public bool isBuffed = false;
     private SpriteRenderer sr;  
+ [SerializeField] private SpriteRenderer Si;
+    public int enenmyStatus;
+    
 
      void Start()
     {
         sr = GetComponent<SpriteRenderer>();
+        Si.gameObject.SetActive(false); // Hide the status indicator at the start
         setupEnemyStats();
     }
 
   void Update()
 {if (isDead) return;
+SetEnemyStatus(enenmyStatus);
+        ShowEnemyStatus(enenmyStatus);
     disableTimer -= Time.deltaTime;
     if (type == EliteEnemyType.Boss1 && disableTimer <= 0f)
     {
@@ -134,6 +141,8 @@ void ExplodeOnDeath()
             speed = eliteEnemyStats.speed;
             damage = eliteEnemyStats.damage;
             attackRate = eliteEnemyStats.attackRate;
+            maxhealth = health;
+            enenmyStatus = 2;
         }
     }
     void MoveTowardsTarget()
@@ -202,6 +211,52 @@ void BuffAllEnemies()
                     enemyScript.ApplyDamageBuff(2f); 
                 }
             }
+            Enemy normalenemyScript = enemyObj.GetComponent<Enemy>();
+            if(normalenemyScript != null)
+             {
+                if (!normalenemyScript.isBuffed)
+                {
+                    normalenemyScript.ApplyDamageBuff(2f); 
+                }
+             }
+        }
+    }
+       public void SetEnemyStatus(int status)
+    {
+        enenmyStatus = status;
+        if(health <= maxhealth * 0.3f)
+        {
+            enenmyStatus = 1; // NearlyDeath
+        }
+        else if(isBuffed)
+        {
+            enenmyStatus = 0; // AttackBuff
+        }
+        else
+        {
+            enenmyStatus = 2; // Normal
+        }
+    }
+    public void ShowEnemyStatus(int status)
+    {
+
+        switch (status)
+        {
+            case 0: // AttackBuff
+             if(Si != null){
+                Si.color = Color.yellow;
+                Si.gameObject.SetActive(true); }
+                break;
+            case 1: // NearlyDeath
+               if(Si != null){
+                Si.color = Color.red;
+                Si.gameObject.SetActive(true); }
+                break;
+            case 2: // Normal
+               if(Si != null){
+
+                Si.gameObject.SetActive(false); }
+                break;
         }
     }
     public void ApplyDamageBuff(float multiplier)
@@ -209,7 +264,6 @@ void BuffAllEnemies()
         if (isBuffed) return; 
         damage *= multiplier; 
         isBuffed = true;      
-       
     }
 
 }
