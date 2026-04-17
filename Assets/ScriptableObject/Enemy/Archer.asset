@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Archer
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
   enemyType: 2
-  health: 10
+  enenmyStatus: 0
+  health: 20
   speed: 2
   reward: 0
   armor: 0
-  damage: 2
+  damage: 5
   attackRate: 1
   attackcooldown: 1
   attackRange: 2
