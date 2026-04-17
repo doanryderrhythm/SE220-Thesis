@@ -9,6 +9,7 @@ TagManager:
   - Gun
   - Tower
   - Coin
+  - Status
   layers:
   - Default
   - TransparentFX

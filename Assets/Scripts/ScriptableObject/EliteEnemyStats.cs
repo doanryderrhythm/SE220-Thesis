@@ -15,6 +15,7 @@ public class EliteEnemyStats : ScriptableObject
     public float attackcooldown;
     public float attackRange;
     public Tower targetedTower; // Reference to the target tower (if needed)
+    private int enenmyStatus;
 
 }
 
