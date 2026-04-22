@@ -4,11 +4,10 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - 'enemyTag '
-  - Enemy
   - Gun
-  - Tower
   - Coin
+  - Tower
+  - Enemy
   - Status
   layers:
   - Default
@@ -17,8 +16,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Tower
+  - Player
   - 
   - 
   - 
