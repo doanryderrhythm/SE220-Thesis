@@ -254,7 +254,7 @@ public class PlayerController : MonoBehaviour
         ManageLand();
     }
 
-    void DestroyPlayer()
+    public void DestroyPlayer()
     {
         isDead = true;
         if (GameManager.Instance)
