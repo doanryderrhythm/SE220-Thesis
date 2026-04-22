@@ -12,12 +12,20 @@ public class PlayerController : MonoBehaviour
     {
         playerRunInput.action.Enable();
         playerJumpInput.action.Enable();
+
+        GameEvent.OnGunPicked += PickUpGun;
+        GameEvent.OnGunDropped += DropGun;
+        GameEvent.OnCoinCollected += CollectCoin;
     }
 
     void OnDisable()
     {
         playerRunInput.action.Disable();
         playerJumpInput.action.Disable();
+
+        GameEvent.OnGunPicked -= PickUpGun;
+        GameEvent.OnGunDropped -= DropGun;
+        GameEvent.OnCoinCollected -= CollectCoin;
     }
 
     [SerializeField] Rigidbody2D rb;
@@ -248,7 +256,12 @@ public class PlayerController : MonoBehaviour
 
     void DestroyPlayer()
     {
-
+        isDead = true;
+        if (GameManager.Instance)
+        {
+            GameManager.Instance.StartCoroutine(GameManager.Instance.RespawnPlayer());
+        }
+        Destroy(gameObject);
     }
 
     void BeginShooting()
@@ -260,13 +273,17 @@ public class PlayerController : MonoBehaviour
 
         isGunEquipped = true;
         gunType = gunStats.gunType;
-        shootSpeed = gunStats.shootSpeed;
+        shootSpeed = gunStats.shootSpeed + shootSpeedBonus;
         shootRate = gunStats.shootRate;
+
+        Debug.Log($"Gun Type: {gunType}, Shoot Speed: {shootSpeed}, Shoot Rate: {shootRate}");
     }
+
+    bool isDead = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag(ValueStorer.gunTag))
+        /*if (collision.gameObject.CompareTag(ValueStorer.gunTag))
         {
             Gun gun = collision.GetComponent<Gun>();
             if (gun != null)
@@ -275,6 +292,15 @@ public class PlayerController : MonoBehaviour
                 BeginShooting();
                 Destroy(gun.gameObject);
             }
+        }
+        else*/ if (LayerMask.LayerToName(collision.gameObject.layer) == ValueStorer.enemyLM)
+        {
+            if (isDead)
+            {
+                return;
+            }
+
+            DestroyPlayer();
         }
     }
 
@@ -286,5 +312,32 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
 
+    }
+
+    void PickUpGun(Gun gun)
+        {
+            if (gunStats == null)
+            {
+                gunStats = gun.GetStats();
+                BeginShooting();
+            }
+    }
+
+    void DropGun()
+    {
+        isGunEquipped = false;
+        gunStats = null;
+        totalShootingTime = 0f;
+    }
+
+    [SerializeField] private float shootSpeedBonus = 0f;
+    [SerializeField] private float damageBonus = 0f;
+
+    void CollectCoin(float speed, float damage)
+    {
+        shootSpeedBonus += speed;
+        damageBonus += damage;
+
+        Debug.Log($"Collected Coin! Shoot Speed Bonus: {shootSpeedBonus}, Damage Bonus: {damageBonus}");
     }
 }

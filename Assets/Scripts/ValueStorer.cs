@@ -23,6 +23,7 @@ public class ValueStorer : MonoBehaviour
     #region LAYER MASKS
     public const string groundLM = "Default";
     public const string transparentLM = "TransparentFX";
+    public const string enemyLM = "Enemy";
     #endregion
 
     #region VALUES
@@ -32,5 +33,6 @@ public class ValueStorer : MonoBehaviour
 
     #region TAGS
     public const string gunTag = "Gun";
+    public const string coinTag = "Coin";
     #endregion
 }
