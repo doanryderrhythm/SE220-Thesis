@@ -217,12 +217,5 @@ private void DetectTowerInRange()
         damage *= multiplier; 
         isBuffed = true;      
     }
-    public void EnemyharmPlayer(float damage)
-    {
-        PlayerHealth playerHealth = FindObjectOfType<PlayerHealth>();
-        if (playerHealth != null)
-        {
-            playerHealth.TakeDamage(damage);
-        }
-    }
+   
 }

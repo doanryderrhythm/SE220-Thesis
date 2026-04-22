@@ -3,28 +3,19 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags:
-  - 'enemyTag '
-  - Enemy
-  - Gun
-  - Tower
-<<<<<<< HEAD
-=======
-  - Coin
->>>>>>> 7742f09d8f90e056a6f30afb5d5208d488feb31f
-  - Status
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Player
+  - 
   - Water
   - UI
-  - Bullet
-  - Enemy
-  - Tower
-  - Coin
-  - Gun
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -49,9 +40,6 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Bullet
-    uniqueID: 3292757725
     locked: 0
   m_RenderingLayers:
   - Default
