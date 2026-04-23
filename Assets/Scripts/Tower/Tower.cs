@@ -113,6 +113,10 @@ Transform FindNearestEnemy(){
     void Fire()
     {
         GameObject spawned = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+
+        // Ensure the scale of the projectile remains unchanged
+        spawned.transform.localScale = projectilePrefab.transform.localScale;
+
         Projectile p = spawned.GetComponent<Projectile>();
         if (p != null)
         {  
@@ -123,8 +127,8 @@ Transform FindNearestEnemy(){
         Rigidbody2D rb = spawned.GetComponent<Rigidbody2D>();
         if (rb != null)
         {
-          rb.linearVelocity = firePoint.up * 14f;
-           Debug.DrawRay(firePoint.position, firePoint.up * 2, Color.red, 1f);
+            rb.linearVelocity = firePoint.up * 14f;
+            Debug.DrawRay(firePoint.position, firePoint.up * 2, Color.red, 1f);
         }
     }
 

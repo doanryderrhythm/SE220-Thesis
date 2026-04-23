@@ -25,7 +25,15 @@ public class Projectile : MonoBehaviour
 
         if (eliteEnemy != null)
         {
+           if(eliteEnemy.type == EliteEnemyType.Bulletdeflector)
+            {
+                enemy.TakeDamage(0,true); // Đánh dấu là đạn đã bị deflect để tránh bị deflect lại vô hạn
+                Vector2 deflectDirection = (transform.position - eliteEnemy.transform.position).normalized;
+            }
+            else{
             eliteEnemy.TakeDamage(damage, piercing);
+            
+            }
         }
 
         Destroy(gameObject);

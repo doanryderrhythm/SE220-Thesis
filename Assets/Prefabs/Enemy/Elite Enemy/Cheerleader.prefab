@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5397198362479987300}
   - component: {fileID: 4380157128233518176}
   m_Layer: 7
-  m_Name: Boss3
+  m_Name: Cheerleader
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
