@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 8653652732361606439}
   - component: {fileID: 8256317923929693038}
   - component: {fileID: 3915591513084514171}
+  - component: {fileID: 3573904336209447563}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -186,7 +187,7 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 1
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &8256317923929693038
@@ -233,7 +234,28 @@ MonoBehaviour:
   playerPickUpInput: {fileID: -3401359847826014981, guid: 4deb3af7ec3068f49bf1350c4b5f8dc2, type: 3}
   currentGun: {fileID: 0}
   pendingGun: {fileID: 0}
-  canPickUpGun: 0
+--- !u!95 &3573904336209447563
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2611789595194453044}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7fde8644db251c9478280a7d2d06c1fe, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3985425887276335561
 GameObject:
   m_ObjectHideFlags: 0

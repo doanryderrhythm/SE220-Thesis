@@ -18,6 +18,9 @@ public class ValueStorer : MonoBehaviour
     public static Vector2 colliderSizeMoving = new Vector2(0.5f, 0.5f);
 
     public static float playerRespawnTime = 0.75f;
+
+    public static float defaultPlayerHealth = 100f;
+    public static float playerInvulnerableTime = 1.5f;
     #endregion
 
     #region LAYER MASKS

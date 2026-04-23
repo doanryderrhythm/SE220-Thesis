@@ -5,6 +5,8 @@ using static Gun;
 
 public class PlayerController : MonoBehaviour
 {
+    private Animator animator;
+
     [SerializeField] InputActionReference playerRunInput;
     [SerializeField] InputActionReference playerJumpInput;
 
@@ -152,7 +154,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-
+        animator = GetComponent<Animator>();
+        animator.Play("player_normal");
     }
 
     [SerializeField] Transform sideBarrel;
@@ -162,9 +165,22 @@ public class PlayerController : MonoBehaviour
     private float directionRotation = 0f;
     private float totalShootingTime = 0f;
 
+    bool isInvulnerable = false;
+    float invulnerableTime = ValueStorer.playerInvulnerableTime;
+
     void Update()
     {
-        Debug.Log(jumpCount);
+        if (isInvulnerable)
+        {
+            invulnerableTime -= Time.deltaTime;
+            if (invulnerableTime <= 0f)
+            {
+                isInvulnerable = false;
+                invulnerableTime = ValueStorer.playerInvulnerableTime;
+
+                animator.Play("player_normal");
+            }
+        }
 
         moveRate = playerRunInput.action.ReadValue<float>();
         if (playerRunInput.action.IsPressed())
@@ -254,6 +270,23 @@ public class PlayerController : MonoBehaviour
         ManageLand();
     }
 
+    private float health = ValueStorer.defaultPlayerHealth;
+
+    void HurtPlayer(float value)
+    {
+        if (isInvulnerable)
+            return;
+
+        isInvulnerable = true;
+
+        health -= value;
+        animator.Play("player_hurt");
+        Debug.Log(health);
+
+        if (health <= 0)
+            DestroyPlayer();
+    }
+
     void DestroyPlayer()
     {
         isDead = true;
@@ -293,20 +326,25 @@ public class PlayerController : MonoBehaviour
                 Destroy(gun.gameObject);
             }
         }
-        else*/ if (LayerMask.LayerToName(collision.gameObject.layer) == ValueStorer.enemyLM)
-        {
-            if (isDead)
-            {
-                return;
-            }
-
-            DestroyPlayer();
-        }
+        else*/ 
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        if (LayerMask.LayerToName(collision.gameObject.layer) == ValueStorer.enemyLM)
+        {
+            if (isDead || isInvulnerable)
+                return;
 
+            HarmData harmData = collision.GetComponent<HarmData>();
+            if (!harmData)
+                return;
+
+            if (harmData.GetHarmStats().isInstaKill)
+                DestroyPlayer();
+            else
+                HurtPlayer(harmData.GetHarmStats().damage);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
