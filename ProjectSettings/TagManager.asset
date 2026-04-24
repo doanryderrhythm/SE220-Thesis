@@ -10,6 +10,8 @@ TagManager:
   - Enemy
   - Status
   - Bullet
+  - DeflectedBullet
+  - Projectile
   layers:
   - Default
   - TransparentFX

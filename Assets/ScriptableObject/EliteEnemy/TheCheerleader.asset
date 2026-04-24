@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TheCheerleader
   m_EditorClassIdentifier: Assembly-CSharp::EliteEnemyStats
   enemyType: 2
-  health: 100
+  health: 10
   speed: 2
   reward: 0
   armor: 0
