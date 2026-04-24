@@ -7,8 +7,7 @@ public enum EliteEnemyType
    TowerDisabler,
     Excutioner,
     Cheerleader,
-    Bulletdeflector,
-    OmniSlasher
+    Bulletdeflector
 }
 
 public class EliteEnemy : MonoBehaviour
