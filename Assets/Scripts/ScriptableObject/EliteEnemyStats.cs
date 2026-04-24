@@ -16,6 +16,6 @@ public class EliteEnemyStats : ScriptableObject
     public float attackRange;
     public Tower targetedTower; // Reference to the target tower (if needed)
     private int enenmyStatus;
-
+    public HarmStats harmStats; // Reference to HarmStats ScriptableObject
 }
 

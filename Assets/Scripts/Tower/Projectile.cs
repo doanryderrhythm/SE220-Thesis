@@ -1,3 +1,4 @@
+using System.Reflection;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -31,6 +32,7 @@ public class Projectile : MonoBehaviour
             {
                 enemy.TakeDamage(0,false); 
                 Vector2 deflectDirection = (transform.position - eliteEnemy.transform.position).normalized;
+                
             }
             else{
             eliteEnemy.TakeDamage(damage, piercing);
