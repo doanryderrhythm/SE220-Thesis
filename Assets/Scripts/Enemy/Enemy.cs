@@ -12,7 +12,6 @@ public enum EnemyType
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private EnemyStats enemyStats; // Reference to the ScriptableObject for stats
-
     private EnemyType type;
     private float health;   
     private float speed;
@@ -27,8 +26,9 @@ public class Enemy : MonoBehaviour
     public bool isBuffed = false; // Flag to track if the enemy is currently buffed
     [SerializeField] private GameObject arrowPrefab;
     [SerializeField] private LayerMask towerLayer;
+    [SerializeField] private LayerMask playerLayer;
     private Tower targetedtower; // Reference to the target tower (if needed)
-
+private PlayerController targetedPlayer; // Reference to the target player (if needed)
        public Transform[] waypoints;
     private int waypointIndex = 0;
 public int enenmyStatus;
@@ -46,22 +46,23 @@ public int enenmyStatus;
     
    SetEnemyStatus(enenmyStatus); // Update the enemy status based on current conditions
         ShowEnemyStatus(enenmyStatus); // Update the visual representation of the enemy status  
-    if (targetedtower != null)
+if (targetedtower != null || targetedPlayer != null)
+{
+    attackcooldown -= Time.deltaTime;
+    if (attackcooldown <= 0f)
     {
-        attackcooldown -= Time.deltaTime;
-        if (attackcooldown <= 0f)
-        {
-            PerformAttack();
-        }
+        PerformAttack();
     }
-    else 
-    {speed = enemyStats.speed; // Reset speed when not attacking
-        if (type == EnemyType.Archer)
-        {
-            DetectTowerInRange();
-        }
-        MoveTowardsTarget();
-    }
+}
+else 
+{
+    speed = enemyStats.speed;
+
+        DetectInRange();
+    
+
+    MoveTowardsTarget();
+}
 }
 
     public void TakeDamage(float damage, bool pierce)
@@ -122,7 +123,6 @@ public int enenmyStatus;
     }
     private void OnTriggerEnter2D(Collider2D collision)
 {
-   
     if (collision.CompareTag("Tower"))
     {
         Tower tower = collision.GetComponent<Tower>();
@@ -132,46 +132,90 @@ public int enenmyStatus;
             attackcooldown = 0f; 
         }
     }
-}
-private void PerformAttack()
-{
-    if (targetedtower == null) return;
-
-    speed = 0f;
-
-    if (type == EnemyType.Archer && arrowPrefab != null)
+    else if (collision.CompareTag("Player"))
     {
-       
-
-        GameObject arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
-        Arrow arrowScript = arrow.GetComponent<Arrow>();
-        if (arrowScript != null)
+        PlayerController player = collision.GetComponent<PlayerController>();
+        if (player != null)
         {
-            arrowScript.SetTarget(targetedtower.transform);
-            arrowScript.SetDamage(damage);
+            Debug.Log("Enemy collided with Player."); // Log collision
+            targetedPlayer = player;
+            attackcooldown = 0f;
         }
+
     }
     else
     {
-
-        targetedtower.TakeDamage(damage);
+        Debug.Log("Collision detected with: " + collision.gameObject.name);
     }
-
-    attackcooldown = (attactrate > 0) ? (1f / attactrate) : 1f;
 }
-private void DetectTowerInRange()
+private void OnTriggerExit2D(Collider2D collision)
 {
- Collider2D hit = Physics2D.OverlapCircle(transform.position, attackRange, towerLayer);
-
-    if (hit != null)
+    if (collision.CompareTag("Tower"))
     {
-        Tower tower = hit.GetComponent<Tower>();
-        if (tower != null)
-        {
-            targetedtower = tower;
-            attackcooldown = 0f;
-        }
+        targetedtower = null;
     }
+    else if (collision.CompareTag("Player"))
+    {
+        targetedPlayer = null;
+    }
+}
+private void PerformAttack()
+{
+        if (targetedtower == null && targetedPlayer == null) return;
+
+        speed = 0f;
+
+        if (type == EnemyType.Archer && arrowPrefab != null)
+        {
+            GameObject arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
+            Arrow arrowScript = arrow.GetComponent<Arrow>();
+            if (arrowScript != null)
+            {
+                Transform targetTransform = targetedtower != null ? targetedtower.transform : targetedPlayer.transform;
+                arrowScript.SetTarget(targetTransform);
+                arrowScript.SetDamage(damage);
+            }
+        }
+        else
+        {
+            if (targetedPlayer != null)
+            {
+                targetedPlayer.DestroyPlayer();
+                targetedPlayer = null; // Clear the reference after attacking the player
+            }
+            else if (targetedtower != null)
+            {
+                targetedtower.TakeDamage(damage);
+            }
+        }
+
+        attackcooldown = (attactrate > 0) ? (1f / attactrate) : 1f;
+}
+private void DetectInRange()
+{
+
+    Collider2D hitTower = Physics2D.OverlapCircle(transform.position, attackRange, towerLayer);
+        if (hitTower != null)
+        {
+            Tower tower = hitTower.GetComponent<Tower>();
+            if (tower != null)
+            {
+                targetedtower = tower;
+                attackcooldown = 0f;
+                return; // Nếu thấy Tower thì thôi không cần quét Player nữa
+            }
+        }
+
+        Collider2D hitPlayer = Physics2D.OverlapCircle(transform.position, attackRange, playerLayer);
+        if (hitPlayer != null)
+        {
+            PlayerController player = hitPlayer.GetComponent<PlayerController>();
+            if (player != null)
+            {
+                targetedPlayer = player;
+                attackcooldown = 0f;
+            }
+        }
     }
     public void SetEnemyStatus(int status)
     {
@@ -217,4 +261,5 @@ private void DetectTowerInRange()
         damage *= multiplier; 
         isBuffed = true;      
     }
+   
 }

@@ -4,6 +4,7 @@ public class Projectile : MonoBehaviour
 {
     public float damage = 5f;
     public bool piercing = false;
+  
 
     void Start()
     {
@@ -21,13 +22,23 @@ public class Projectile : MonoBehaviour
         if (enemy != null)
         {
             enemy.TakeDamage(damage, piercing);
+            Destroy(gameObject);
         }
 
         if (eliteEnemy != null)
         {
+           if(eliteEnemy.type == EliteEnemyType.Bulletdeflector)
+            {
+                enemy.TakeDamage(0,false); 
+                Vector2 deflectDirection = (transform.position - eliteEnemy.transform.position).normalized;
+            }
+            else{
             eliteEnemy.TakeDamage(damage, piercing);
+            Destroy(gameObject);
+            }
         }
 
-        Destroy(gameObject);
+      
     }
+  
 }

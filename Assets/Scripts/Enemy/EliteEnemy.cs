@@ -4,15 +4,16 @@ using System.Collections;
 
 public enum EliteEnemyType
 {
-   Boss1,
-    Boss2,
-    Boss3
+   TowerDisabler,
+    Excutioner,
+    Cheerleader,
+    Bulletdeflector
 }
 
 public class EliteEnemy : MonoBehaviour
 {
     [SerializeField] private EliteEnemyStats eliteEnemyStats; // Reference to the ScriptableObject for elite enemy stats
-    private EliteEnemyType   type;
+    public EliteEnemyType   type;
     private float health;
     private float speed;
     private float reward;
@@ -36,9 +37,15 @@ public class EliteEnemy : MonoBehaviour
     public float buffCooldown = 5f;      
     private float buffTimer = 0f;        
     public bool isBuffed = false;
+        [Header("Boss 4 Settings")]
+        public float detectRadius = 1f;
+        public float deflectDuration = 2f;
+ // Prefab for the deflected projectile
     private SpriteRenderer sr;  
  [SerializeField] private SpriteRenderer Si;
+  [SerializeField] private GameObject arrowPrefab;
     public int enenmyStatus;
+    private PlayerController targetedPlayer; // Reference to the target player (if needed)
     
 
      void Start()
@@ -52,13 +59,14 @@ public class EliteEnemy : MonoBehaviour
 {if (isDead) return;
 SetEnemyStatus(enenmyStatus);
         ShowEnemyStatus(enenmyStatus);
+
     disableTimer -= Time.deltaTime;
-    if (type == EliteEnemyType.Boss1 && disableTimer <= 0f)
+    if (type == EliteEnemyType.TowerDisabler && disableTimer <= 0f)
     {
         DisableNearestTower();
         disableTimer = disableCooldown; 
     }
-    if (type == EliteEnemyType.Boss3)
+    if (type == EliteEnemyType.Cheerleader)
         {
             buffTimer -= Time.deltaTime;
             if (buffTimer <= 0f)
@@ -67,15 +75,13 @@ SetEnemyStatus(enenmyStatus);
                 buffTimer = buffCooldown; 
             }
         }
-    if (targetedtower != null)
+
+    if (targetedtower != null || targetedPlayer != null)
     {
         attackcooldown -= Time.deltaTime;
         if (attackcooldown <= 0f)
         {
-            float actualDamage = (damage > 0) ? damage : 1f; 
-            targetedtower.TakeDamage(actualDamage);
-            float interval = (attackRate > 0) ? (1f / attackRate) : 1f;
-            attackcooldown = interval; 
+            PerformAttack();
         }
     }
     else 
@@ -86,7 +92,8 @@ SetEnemyStatus(enenmyStatus);
 
     public void TakeDamage(float damage, bool pierce)
     {
-        if (type == EliteEnemyType.Boss1 && !pierce && armor > 0f)
+  
+         if (type == EliteEnemyType.TowerDisabler && !pierce && armor > 0f)
         {
             float armorAbsorb = Mathf.Min(armor, damage);
             armor -= armorAbsorb;
@@ -94,11 +101,11 @@ SetEnemyStatus(enenmyStatus);
         }
 
         health -= damage;
-
         if (health <= 0f)
         {
             Die();
         }
+   
     }
 
  void Die()
@@ -110,7 +117,7 @@ SetEnemyStatus(enenmyStatus);
     }
     speed = 0f;
     Destroy(gameObject, 0.3f);
-if (type == EliteEnemyType.Boss2)
+if (type == EliteEnemyType.Excutioner)
     {
         ExplodeOnDeath();
     }
@@ -127,6 +134,14 @@ void ExplodeOnDeath()
                 if (tower != null)
                 {
                     tower.TakeDamage(10f * damage); 
+                }
+            }
+            else if (hit.CompareTag("Player"))
+            {
+                PlayerController player = hit.GetComponent<PlayerController>();
+                if (player != null)
+                {
+                    player.DestroyPlayer(); 
                 }
             }
         }
@@ -159,7 +174,6 @@ void ExplodeOnDeath()
     }
     private void OnTriggerEnter2D(Collider2D collision)
 {
-   
     if (collision.CompareTag("Tower"))
     {
         Tower tower = collision.GetComponent<Tower>();
@@ -167,6 +181,17 @@ void ExplodeOnDeath()
         {
             targetedtower = tower;
             attackcooldown = 0f; 
+           
+        }
+    }
+    else if (collision.CompareTag("Player"))
+    {
+        PlayerController player = collision.GetComponent<PlayerController>();
+        if (player != null)
+        {
+            targetedPlayer = player;
+            attackcooldown = 0f;
+            speed = eliteEnemyStats.speed / 2f; // Slow down the enemy when it starts attacking the player
         }
     }
 }
@@ -266,6 +291,41 @@ void BuffAllEnemies()
         isBuffed = true;      
     }
 
+    private void PerformAttack()
+    {
+        if (targetedtower == null && targetedPlayer == null) return;
+
+
+        if (targetedtower != null)
+        {
+            targetedtower.TakeDamage(damage);
+        }
+        else if (targetedPlayer != null)
+        {
+            targetedPlayer.DestroyPlayer();
+            targetedPlayer = null; // Clear the reference after attacking the player
+        }
+
+        attackcooldown = (attackRate > 0) ? (1f / attackRate) : 1f;
+    }
+
+ 
+    // Thêm hàm này vào trong class EliteEnemy
+    private void OnDrawGizmosSelected()
+    {
+        if (type == EliteEnemyType.Bulletdeflector)
+        {
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawWireSphere(transform.position, detectRadius);
+        }
+
+
+        if (type == EliteEnemyType.TowerDisabler)
+        {
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawWireSphere(transform.position, abilityRadius);
+        }
+    }
 }
 
 

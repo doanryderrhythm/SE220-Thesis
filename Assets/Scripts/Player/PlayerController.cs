@@ -287,7 +287,7 @@ public class PlayerController : MonoBehaviour
             DestroyPlayer();
     }
 
-    void DestroyPlayer()
+    public void DestroyPlayer()
     {
         isDead = true;
         if (GameManager.Instance)

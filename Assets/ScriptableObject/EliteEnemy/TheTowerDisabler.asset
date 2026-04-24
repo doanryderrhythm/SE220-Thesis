@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db685626103b94d40a39f8a757e23d65, type: 3}
-  m_Name: Boss2
+  m_Name: TheTowerDisabler
   m_EditorClassIdentifier: Assembly-CSharp::EliteEnemyStats
-  enemyType: 1
-  health: 20
-  speed: 4
+  enemyType: 3
+  health: 1000
+  speed: 2
   reward: 0
   armor: 0
-  damage: 10
-  attackRate: 1
-  attackcooldown: 1
-  attackRange: 1
+  damage: 2
+  attackRate: 2
+  attackcooldown: 2
+  attackRange: 3
   targetedTower: {fileID: 0}
