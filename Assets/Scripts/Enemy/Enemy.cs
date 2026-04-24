@@ -12,7 +12,6 @@ public enum EnemyType
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private EnemyStats enemyStats; // Reference to the ScriptableObject for stats
-[SerializeField] private Damagedealstoplayer damageToPlayer; // Reference to the ScriptableObject for damage to player
     private EnemyType type;
     private float health;   
     private float speed;
