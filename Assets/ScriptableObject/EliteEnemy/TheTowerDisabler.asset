@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db685626103b94d40a39f8a757e23d65, type: 3}
   m_Name: TheTowerDisabler
   m_EditorClassIdentifier: Assembly-CSharp::EliteEnemyStats
-  enemyType: 0
+  enemyType: 3
   health: 1000
-  speed: 5
+  speed: 2
   reward: 0
   armor: 0
-  damage: 25
+  damage: 2
   attackRate: 2
   attackcooldown: 2
   attackRange: 3
