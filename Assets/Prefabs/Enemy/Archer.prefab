@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 3407383523530792096}
   - component: {fileID: 3803543892527040652}
   - component: {fileID: 5560216689472825799}
+  - component: {fileID: 4272095431053019569}
   m_Layer: 7
   m_Name: Archer
   m_TagString: Enemy
@@ -277,6 +278,9 @@ MonoBehaviour:
   towerLayer:
     serializedVersion: 2
     m_Bits: 256
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
   waypoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -284,3 +288,16 @@ MonoBehaviour:
   - {fileID: 0}
   enenmyStatus: 0
   Si: {fileID: 8868915864196979128}
+--- !u!114 &4272095431053019569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8439660666993938566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2d61084c01d0674bae286dacdb10fe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HarmData
+  harmStats: {fileID: 11400000, guid: 5bedd3407d037304a925f30c526a3f32, type: 2}

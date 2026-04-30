@@ -35,9 +35,11 @@ private PlayerController targetedPlayer; // Reference to the target player (if n
 public int enenmyStatus;
     private SpriteRenderer sr; 
  [SerializeField] private SpriteRenderer Si; // Reference to the arrow prefab for Archer attacks
+ private HarmData harmData;
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
+        harmData = GetComponent<HarmData>(); 
         setupEnemyStats();
     }
 
@@ -177,18 +179,21 @@ private void PerformAttack()
                 arrowScript.SetDamage(damage);
             }
         }
+         else if (targetedPlayer != null)
+    {
+        HarmStats stats = harmData != null ? harmData.GetHarmStats() : null;
+
+        if (stats != null)
+        {
+            targetedPlayer.HurtPlayer(stats.damage);
+        }
         else
         {
-            if (targetedPlayer != null)
-            {
-                targetedPlayer.DestroyPlayer();
-                targetedPlayer = null; // Clear the reference after attacking the player
-            }
-            else if (targetedtower != null)
-            {
-                targetedtower.TakeDamage(damage);
-            }
+            targetedPlayer.HurtPlayer(damage); 
         }
+
+        speed = enemyStats.speed;
+    }
 
         attackcooldown = (attactrate > 0) ? (1f / attactrate) : 1f;
 }

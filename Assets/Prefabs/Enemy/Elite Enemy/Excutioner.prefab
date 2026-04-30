@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1015150972646177047}
   - component: {fileID: 3245215555707696257}
   - component: {fileID: 1979577390458200668}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Excutioner
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -181,6 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EliteEnemy
   eliteEnemyStats: {fileID: 11400000, guid: be3ab90db5611a843b796d33997cde50, type: 2}
+  type: 0
   waypoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -193,7 +194,10 @@ MonoBehaviour:
   explosionRadius: 100
   buffCooldown: 5
   isBuffed: 0
+  detectRadius: 1
+  deflectDuration: 2
   Si: {fileID: 5657116951904443352}
+  arrowPrefab: {fileID: 0}
   enenmyStatus: 0
 --- !u!1 &3828461523926749767
 GameObject:
@@ -205,7 +209,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3981184213531943982}
   - component: {fileID: 5657116951904443352}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Status
   m_TagString: Status
   m_Icon: {fileID: 0}

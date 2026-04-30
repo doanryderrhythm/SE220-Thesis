@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4739373584339680834}
   - component: {fileID: 169380597808394585}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Status
   m_TagString: Status
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 625244067207051241}
   - component: {fileID: 6065826310016014230}
   - component: {fileID: 8031952280092142771}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: TowerDisabler
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -272,6 +272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EliteEnemy
   eliteEnemyStats: {fileID: 11400000, guid: 337b1092df888f34ca5656dbb4f605de, type: 2}
+  type: 0
   waypoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -284,5 +285,8 @@ MonoBehaviour:
   explosionRadius: 100
   buffCooldown: 5
   isBuffed: 0
+  detectRadius: 1
+  deflectDuration: 2
   Si: {fileID: 169380597808394585}
+  arrowPrefab: {fileID: 0}
   enenmyStatus: 0

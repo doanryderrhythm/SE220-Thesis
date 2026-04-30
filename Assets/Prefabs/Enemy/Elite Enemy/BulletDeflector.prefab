@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5941218431526288904}
   - component: {fileID: 1719943513618134735}
   - component: {fileID: 2007989931146276281}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: BulletDeflector
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5485627551170429993}
   - component: {fileID: 1730305698212751823}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Status
   m_TagString: Status
   m_Icon: {fileID: 0}
