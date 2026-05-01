@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: TheExcutioner
   m_EditorClassIdentifier: Assembly-CSharp::EliteEnemyStats
   enemyType: 1
-  health: 20
+  health: 10
   speed: 1
   reward: 0
-  armor: 0
+  armor: 5
   damage: 10
   attackRate: 1
   attackcooldown: 1
   attackRange: 1
   targetedTower: {fileID: 0}
+  harmStats: {fileID: 0}
