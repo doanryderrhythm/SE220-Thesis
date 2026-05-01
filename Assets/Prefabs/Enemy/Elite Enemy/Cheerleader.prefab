@@ -181,6 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EliteEnemy
   eliteEnemyStats: {fileID: 11400000, guid: 7e16e1810fe46dd42941a8555428d086, type: 2}
+  type: 0
   waypoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -192,7 +193,10 @@ MonoBehaviour:
   explosionRadius: 100
   buffCooldown: 1
   isBuffed: 0
+  detectRadius: 1
+  deflectDuration: 2
   Si: {fileID: 8237947039893661004}
+  arrowPrefab: {fileID: 0}
   enenmyStatus: 0
 --- !u!1 &6837354535506617306
 GameObject:

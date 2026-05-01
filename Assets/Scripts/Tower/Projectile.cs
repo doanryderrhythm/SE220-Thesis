@@ -1,14 +1,17 @@
+using System.Reflection;
 using UnityEngine;
+
 
 public class Projectile : MonoBehaviour
 {
     public float damage = 5f;
     public bool piercing = false;
+    public float lifetime = 5f;
   
 
     void Start()
     {
-       
+       Destroy(gameObject, lifetime);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -31,14 +34,14 @@ public class Projectile : MonoBehaviour
             {
                 enemy.TakeDamage(0,false); 
                 Vector2 deflectDirection = (transform.position - eliteEnemy.transform.position).normalized;
+                 Destroy(gameObject, lifetime);
+                
             }
             else{
             eliteEnemy.TakeDamage(damage, piercing);
             Destroy(gameObject);
             }
         }
-
-      
     }
   
 }

@@ -12,6 +12,7 @@ public enum EnemyType
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private EnemyStats enemyStats; // Reference to the ScriptableObject for stats
+ // Reference to the ScriptableObject for damage to player
     private EnemyType type;
     private float health;   
     private float speed;
@@ -34,9 +35,11 @@ private PlayerController targetedPlayer; // Reference to the target player (if n
 public int enenmyStatus;
     private SpriteRenderer sr; 
  [SerializeField] private SpriteRenderer Si; // Reference to the arrow prefab for Archer attacks
+ private HarmData harmData;
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
+        harmData = GetComponent<HarmData>(); 
         setupEnemyStats();
     }
 
@@ -67,13 +70,13 @@ else
 
     public void TakeDamage(float damage, bool pierce)
     {
-        if (type == EnemyType.ArmoredInfantry && !pierce && armor > 0f)
+        if ( !pierce && armor > 0)
         {
             float armorAbsorb = Mathf.Min(armor, damage);
             armor -= armorAbsorb;
             damage -= armorAbsorb;
         }
-
+else
         health -= damage;
 
         if (health <= 0f)
@@ -107,6 +110,7 @@ else
         maxhealth = health;
         basedamage = damage;
         enenmyStatus =2;
+        armor = enemyStats.armor;
         }
     }
     void MoveTowardsTarget()
@@ -176,18 +180,21 @@ private void PerformAttack()
                 arrowScript.SetDamage(damage);
             }
         }
+         else if (targetedPlayer != null)
+    {
+        HarmStats stats = harmData != null ? harmData.GetHarmStats() : null;
+
+        if (stats != null)
+        {
+            targetedPlayer.HurtPlayer(stats.damage);
+        }
         else
         {
-            if (targetedPlayer != null)
-            {
-                targetedPlayer.DestroyPlayer();
-                targetedPlayer = null; // Clear the reference after attacking the player
-            }
-            else if (targetedtower != null)
-            {
-                targetedtower.TakeDamage(damage);
-            }
+            targetedPlayer.HurtPlayer(damage); 
         }
+
+        speed = enemyStats.speed;
+    }
 
         attackcooldown = (attactrate > 0) ? (1f / attactrate) : 1f;
 }

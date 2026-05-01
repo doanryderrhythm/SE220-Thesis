@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 6369590795546967372}
   - component: {fileID: 4209152714400656271}
   - component: {fileID: 5298419029853718184}
+  - component: {fileID: -1777612011574254077}
   m_Layer: 7
   m_Name: ArmorInfrant
   m_TagString: Enemy
@@ -201,7 +202,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -243,7 +244,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -283,3 +284,16 @@ MonoBehaviour:
   waypoints: []
   enenmyStatus: 0
   Si: {fileID: 6411737191020833447}
+--- !u!114 &-1777612011574254077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7710256092240398130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2d61084c01d0674bae286dacdb10fe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HarmData
+  harmStats: {fileID: 11400000, guid: 5bedd3407d037304a925f30c526a3f32, type: 2}

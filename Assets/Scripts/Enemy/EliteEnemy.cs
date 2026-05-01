@@ -7,7 +7,8 @@ public enum EliteEnemyType
    TowerDisabler,
     Excutioner,
     Cheerleader,
-    Bulletdeflector
+    Bulletdeflector,
+    OmniSlasher
 }
 
 public class EliteEnemy : MonoBehaviour
@@ -47,11 +48,12 @@ public class EliteEnemy : MonoBehaviour
     public int enenmyStatus;
     private PlayerController targetedPlayer; // Reference to the target player (if needed)
     
-
+private HarmData harmData;
      void Start()
     {
         sr = GetComponent<SpriteRenderer>();
         Si.gameObject.SetActive(false); // Hide the status indicator at the start
+        harmData = GetComponent<HarmData>(); // Get the HarmData component attached to this enemy
         setupEnemyStats();
     }
 
@@ -82,6 +84,7 @@ SetEnemyStatus(enenmyStatus);
         if (attackcooldown <= 0f)
         {
             PerformAttack();
+  
         }
     }
     else 
@@ -93,13 +96,13 @@ SetEnemyStatus(enenmyStatus);
     public void TakeDamage(float damage, bool pierce)
     {
   
-         if (type == EliteEnemyType.TowerDisabler && !pierce && armor > 0f)
+         if (!pierce && armor > 0f)
         {
             float armorAbsorb = Mathf.Min(armor, damage);
             armor -= armorAbsorb;
             damage -= armorAbsorb;
         }
-
+else
         health -= damage;
         if (health <= 0f)
         {
@@ -141,7 +144,8 @@ void ExplodeOnDeath()
                 PlayerController player = hit.GetComponent<PlayerController>();
                 if (player != null)
                 {
-                    player.DestroyPlayer(); 
+                  
+                    player.HurtPlayer(1);
                 }
             }
         }
@@ -158,6 +162,7 @@ void ExplodeOnDeath()
             attackRate = eliteEnemyStats.attackRate;
             maxhealth = health;
             enenmyStatus = 2;
+            armor = eliteEnemyStats.armor;
         }
     }
     void MoveTowardsTarget()
@@ -293,20 +298,29 @@ void BuffAllEnemies()
 
     private void PerformAttack()
     {
-        if (targetedtower == null && targetedPlayer == null) return;
+         if (targetedtower == null && targetedPlayer == null) return;
 
+    if (targetedtower != null)
+    {
+        targetedtower.TakeDamage(damage);
+    }
+    else if (targetedPlayer != null)
+    {
+        HarmStats stats = harmData != null ? harmData.GetHarmStats() : null;
 
-        if (targetedtower != null)
+        if (stats != null)
         {
-            targetedtower.TakeDamage(damage);
+            targetedPlayer.HurtPlayer(stats.damage);
         }
-        else if (targetedPlayer != null)
+        else
         {
-            targetedPlayer.DestroyPlayer();
-            targetedPlayer = null; // Clear the reference after attacking the player
+            targetedPlayer.HurtPlayer(damage); 
         }
 
-        attackcooldown = (attackRate > 0) ? (1f / attackRate) : 1f;
+        speed = eliteEnemyStats.speed;
+    }
+
+    attackcooldown = (attackRate > 0) ? (1f / attackRate) : 1f;
     }
 
  
@@ -326,6 +340,8 @@ void BuffAllEnemies()
             Gizmos.DrawWireSphere(transform.position, abilityRadius);
         }
     }
+
+
 }
 
 

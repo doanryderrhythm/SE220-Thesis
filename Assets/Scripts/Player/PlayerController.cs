@@ -272,7 +272,7 @@ public class PlayerController : MonoBehaviour
 
     private float health = ValueStorer.defaultPlayerHealth;
 
-    void HurtPlayer(float value)
+   public void HurtPlayer(float value)
     {
         if (isInvulnerable)
             return;
