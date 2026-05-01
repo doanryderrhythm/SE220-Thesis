@@ -70,13 +70,13 @@ else
 
     public void TakeDamage(float damage, bool pierce)
     {
-        if (type == EnemyType.ArmoredInfantry && !pierce && armor > 0f)
+        if ( !pierce && armor > 0)
         {
             float armorAbsorb = Mathf.Min(armor, damage);
             armor -= armorAbsorb;
             damage -= armorAbsorb;
         }
-
+else
         health -= damage;
 
         if (health <= 0f)
@@ -110,6 +110,7 @@ else
         maxhealth = health;
         basedamage = damage;
         enenmyStatus =2;
+        armor = enemyStats.armor;
         }
     }
     void MoveTowardsTarget()

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TheTowerDisabler
   m_EditorClassIdentifier: Assembly-CSharp::EliteEnemyStats
   enemyType: 3
-  health: 1000
+  health: 20
   speed: 2
   reward: 0
   armor: 0
@@ -22,3 +22,4 @@ MonoBehaviour:
   attackcooldown: 2
   attackRange: 3
   targetedTower: {fileID: 0}
+  harmStats: {fileID: 0}

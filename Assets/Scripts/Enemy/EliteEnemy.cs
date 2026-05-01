@@ -96,13 +96,13 @@ SetEnemyStatus(enenmyStatus);
     public void TakeDamage(float damage, bool pierce)
     {
   
-         if (type == EliteEnemyType.TowerDisabler && !pierce && armor > 0f)
+         if (!pierce && armor > 0f)
         {
             float armorAbsorb = Mathf.Min(armor, damage);
             armor -= armorAbsorb;
             damage -= armorAbsorb;
         }
-
+else
         health -= damage;
         if (health <= 0f)
         {
@@ -162,6 +162,7 @@ void ExplodeOnDeath()
             attackRate = eliteEnemyStats.attackRate;
             maxhealth = health;
             enenmyStatus = 2;
+            armor = eliteEnemyStats.armor;
         }
     }
     void MoveTowardsTarget()
