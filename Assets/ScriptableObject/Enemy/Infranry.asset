@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Infranry
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
   enemyType: 1
+  enenmyStatus: 0
   health: 15
-  speed: 5
+  speed: 2
   reward: 0
   armor: 0
   damage: 5
