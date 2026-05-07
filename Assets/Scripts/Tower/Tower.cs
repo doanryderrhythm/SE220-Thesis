@@ -47,6 +47,7 @@ public class Tower : MonoBehaviour
         
     }
     float towermaxHP;
+    bool isUpgraded = false;
 
     void SetupTowerStats()
     {
@@ -223,9 +224,11 @@ public void DisableShooting(float duration)
     }
     public void upgradeTower()
     {
+        if (isUpgraded) return; // Prevent multiple upgrades
         // Implement upgrade logic here (e.g., check player resources, apply stat increases, etc.)
         towerHP = towermaxHP;
         projectileDamage = towerStats.projectileDamage * 1.5f; // Example: Increase damage by 50%
+        isUpgraded = true;
     }
 
     void UpdateHPBar()
