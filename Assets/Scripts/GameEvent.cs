@@ -5,5 +5,7 @@ public static class GameEvent
 {
     public static Action<Gun> OnGunPicked;
     public static Action OnGunDropped;
-    public static Action<float, float> OnCoinCollected;
+    public static Action<float> OnPlayerPowerUpCollected;
+    public static Action<float> OnTowerPowerUpCollected;
+    public static Action<float> OnGunPowerUpCollected;
 }
