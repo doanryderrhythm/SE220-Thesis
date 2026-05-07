@@ -49,6 +49,9 @@ public class EnemySpawner : MonoBehaviour
             case "2": prefabToSpawn = archerPrefab; break;
             case "3": prefabToSpawn = armoredInfantryPrefab; break;
             case "A": prefabToSpawn = towerDisablerPrefab; break;
+            case "B": prefabToSpawn = executionerPrefab; break;
+            case "C": prefabToSpawn = cheerleaderPrefab; break;
+            case "D": prefabToSpawn = bulletDeflectorPrefab; break;
             default: return;
         }
 

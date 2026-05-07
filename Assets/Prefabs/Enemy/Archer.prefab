@@ -277,11 +277,12 @@ MonoBehaviour:
   arrowPrefab: {fileID: 5326686642656566809, guid: 11e9df5545c888c4e955abf029dbb123, type: 3}
   towerLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 320
   playerLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   waypoints:
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
