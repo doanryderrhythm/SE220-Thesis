@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
     public Vector2 direction;
     public float speed;
 
-    public float damage = 5f;
+    public float damage = 5;
     public bool piercing = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -36,5 +36,19 @@ public class Bullet : MonoBehaviour
 
         enemy.TakeDamage(damage, piercing);
         Destroy(gameObject);
+    }
+
+    private void OnEnable()
+    {
+        GameEvent.OnGunPowerUpCollected += CollectGunPowerUp;
+    }
+
+    private void OnDisable()
+    {
+        GameEvent.OnGunPowerUpCollected -= CollectGunPowerUp;
+    }
+    void CollectGunPowerUp(float value)
+    {
+        damage += value;
     }
 }

@@ -17,7 +17,8 @@ public class PlayerController : MonoBehaviour
 
         GameEvent.OnGunPicked += PickUpGun;
         GameEvent.OnGunDropped += DropGun;
-        GameEvent.OnCoinCollected += CollectCoin;
+        GameEvent.OnGunPowerUpCollected += CollectGunPowerUp;
+        GameEvent.OnPlayerPowerUpCollected += CollectPlayerPowerUp;
     }
 
     void OnDisable()
@@ -27,7 +28,8 @@ public class PlayerController : MonoBehaviour
 
         GameEvent.OnGunPicked -= PickUpGun;
         GameEvent.OnGunDropped -= DropGun;
-        GameEvent.OnCoinCollected -= CollectCoin;
+        GameEvent.OnGunPowerUpCollected -= CollectGunPowerUp;
+        GameEvent.OnPlayerPowerUpCollected -= CollectPlayerPowerUp;
     }
 
     [SerializeField] Rigidbody2D rb;
@@ -244,6 +246,7 @@ public class PlayerController : MonoBehaviour
         {
             bullet.speed = shootSpeed;
             bullet.direction = (pos - transform.position).normalized;
+            bullet.damage += damageBonus;
         }
     }
 
@@ -270,7 +273,7 @@ public class PlayerController : MonoBehaviour
         ManageLand();
     }
 
-    private float health = ValueStorer.defaultPlayerHealth;
+    [SerializeField] private float health = ValueStorer.defaultPlayerHealth;
 
    public void HurtPlayer(float value)
     {
@@ -306,8 +309,7 @@ public class PlayerController : MonoBehaviour
 
         isGunEquipped = true;
         gunType = gunStats.gunType;
-        shootSpeed = gunStats.shootSpeed + shootSpeedBonus;
-        shootRate = gunStats.shootRate;
+        UpdateGunStats();
 
         Debug.Log($"Gun Type: {gunType}, Shoot Speed: {shootSpeed}, Shoot Rate: {shootRate}");
     }
@@ -367,15 +369,36 @@ public class PlayerController : MonoBehaviour
         gunStats = null;
         totalShootingTime = 0f;
     }
-
-    [SerializeField] private float shootSpeedBonus = 0f;
-    [SerializeField] private float damageBonus = 0f;
-
-    void CollectCoin(float speed, float damage)
+    [SerializeField] float shootSpeedBonus = 0f;
+    [SerializeField] float shootRateBonus = 0f;
+    [SerializeField] float damageBonus = 0f;
+    void CollectGunPowerUp(float value)
     {
-        shootSpeedBonus += speed;
-        damageBonus += damage;
+        shootSpeedBonus += value;
+        shootRateBonus += value;
+        damageBonus += value;
 
-        Debug.Log($"Collected Coin! Shoot Speed Bonus: {shootSpeedBonus}, Damage Bonus: {damageBonus}");
+        UpdateGunStats();
+        Debug.Log($"Shoot Speed: {shootSpeed}; Shoot Rate: {shootRate}");
+    }
+
+    void CollectPlayerPowerUp(float value)
+    {
+        health += value;
+        Debug.Log($"Health: {health}");
+    } 
+
+    void UpdateGunStats()
+    {
+        if (gunStats == null)
+        {
+            return;
+        }
+        shootSpeed = gunStats.shootSpeed + shootSpeedBonus;
+
+        shootRate = Mathf.Max(
+            0.05f,
+            gunStats.shootRate - shootRateBonus
+        );
     }
 }
