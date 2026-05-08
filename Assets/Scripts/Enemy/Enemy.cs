@@ -41,6 +41,8 @@ public int enenmyStatus;
         sr = GetComponent<SpriteRenderer>();
         harmData = GetComponent<HarmData>(); 
         setupEnemyStats();
+
+        GameManager.Instance.InsertEnemy(this);
     }
 
   void Update()
@@ -85,6 +87,8 @@ else
         }
     }
 
+    public bool isDead = false;
+
  void Die()
 {
   
@@ -93,7 +97,10 @@ else
         sr.color = Color.red;
     }
 
+    isDead = true;
     speed = 0f;
+        GameManager.Instance.DeleteEnemy(this);
+        GameEvent.OnEnemyKilled?.Invoke();
     Destroy(gameObject, 0.3f);
 }
 

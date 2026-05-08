@@ -17,7 +17,7 @@ public class EnemyTimer : MonoBehaviour
         public Wave[] waves;
     }
 
-    private bool isStarted = false;
+    public bool isStarted = false;
     private int waveSessionIndex = 0;
     private int waveIndex = 0;
 
@@ -26,6 +26,16 @@ public class EnemyTimer : MonoBehaviour
     [SerializeField] TMP_Text timerText;
 
     [SerializeField] WaveSession[] waveSessions;
+
+    private void OnEnable()
+    {
+        GameEvent.OnWaveStarted += StartTimer;
+    }
+
+    private void OnDisable()
+    {
+        GameEvent.OnWaveStarted -= StartTimer;
+    }
 
     void Start()
     {
@@ -39,6 +49,8 @@ public class EnemyTimer : MonoBehaviour
                 }
             }
         }
+
+        GameManager.Instance.InsertTimer(this);
     }
 
     void Update()
@@ -70,15 +82,6 @@ public class EnemyTimer : MonoBehaviour
                 timerText.text = "PAUSED";
             else timerText.text = "OUT OF WAVES";
         }
-
-        // Space key for testing purposed ONLY
-        if (!isStarted &&
-            Keyboard.current != null &&
-            Keyboard.current.spaceKey.wasPressedThisFrame)
-        {
-            if (waveSessionIndex < waveSessions.Length)
-                isStarted = true;
-        }
     }
 
     void EnableEnemies()
@@ -87,5 +90,11 @@ public class EnemyTimer : MonoBehaviour
         {
             waveSessions[waveSessionIndex].waves[waveIndex].enemies[i].SetActive(true);
         }
+    }
+
+    void StartTimer()
+    {
+        if (waveSessionIndex < waveSessions.Length)
+            isStarted = true;
     }
 }

@@ -33,7 +33,7 @@ public class EliteEnemy : MonoBehaviour
     public float disableDuration = 2f;
     [Header("Boss 2 Settings")]
     public float explosionRadius = 5f;
-    private bool isDead = false;
+    public bool isDead = false;
     [Header("Boss 3 Settings")]
     public float buffCooldown = 5f;      
     private float buffTimer = 0f;        
@@ -55,6 +55,8 @@ private HarmData harmData;
         Si.gameObject.SetActive(false); // Hide the status indicator at the start
         harmData = GetComponent<HarmData>(); // Get the HarmData component attached to this enemy
         setupEnemyStats();
+
+        GameManager.Instance.InsertEliteEnemy(this);
     }
 
   void Update()
@@ -114,6 +116,8 @@ else
  void Die()
 {if (isDead) return;
   isDead = true;
+    GameManager.Instance.DeleteEliteEnemy(this);
+    GameEvent.OnEnemyKilled?.Invoke();
     if (sr != null)
     {
         sr.color = Color.red;
