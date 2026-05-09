@@ -46,6 +46,8 @@ public class Tower : MonoBehaviour
         SetupTowerStats();
         
     }
+    float towermaxHP;
+    bool isUpgraded = false;
 
     void SetupTowerStats()
     {
@@ -57,6 +59,7 @@ public class Tower : MonoBehaviour
             projectileDamage = towerStats.projectileDamage;
             projectilePierces = towerStats.projectilePierces;
             towerHP = towerStats.towerHP;
+            towermaxHP = towerHP;
         }
      
       
@@ -218,6 +221,14 @@ public void DisableShooting(float duration)
         GUIUtility.RotateAroundPivot(angle, p1);
         GUI.DrawTexture(new Rect(p1.x, p1.y - width / 2, length, width), Texture2D.whiteTexture);
         GUI.matrix = matrix;
+    }
+    public void upgradeTower()
+    {
+        if (isUpgraded) return; // Prevent multiple upgrades
+        // Implement upgrade logic here (e.g., check player resources, apply stat increases, etc.)
+        towerHP = towermaxHP;
+        projectileDamage = towerStats.projectileDamage * 1.5f; // Example: Increase damage by 50%
+        isUpgraded = true;
     }
 
     void UpdateHPBar()
