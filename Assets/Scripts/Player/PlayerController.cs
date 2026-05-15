@@ -48,8 +48,17 @@ public class PlayerController : MonoBehaviour
     private float jumpBufferTime;
     private float coyoteTime;
 
+   private TowerBuilder towerBuilder;
+    private bool IsInBuildMode => towerBuilder != null && towerBuilder.IsBuildMode;
+
     void ManageMove()
     {
+          if (IsInBuildMode)
+        {
+            rb.linearVelocityX = 0f;
+            ChangeColliderShape(0f);
+            return;
+        }
         float confirmedXVelocity = moveRate * ValueStorer.moveSpeed;
         rb.linearVelocityX = confirmedXVelocity;
 
@@ -73,6 +82,12 @@ public class PlayerController : MonoBehaviour
 
     void ManageJump()
     {
+          if (IsInBuildMode)
+        {
+            rb.linearVelocityX = 0f;
+            ChangeColliderShape(0f);
+            return;
+        }
         if (playerJumpInput.action.WasPressedThisFrame())
         {
             jumpBufferTime = ValueStorer.bufferTime;
@@ -142,6 +157,7 @@ public class PlayerController : MonoBehaviour
 
         jumpBufferTime = 0;
         coyoteTime = ValueStorer.coyoteTime;
+          towerBuilder = GetComponent<TowerBuilder>();
     }
 
     [SerializeField] bool isGunEquipped = false;
@@ -199,7 +215,27 @@ public class PlayerController : MonoBehaviour
                 ShootBullet();
             }
         }
+if (IsInBuildMode)
+        {
+             moveRate = playerRunInput.action.ReadValue<float>();
+            if (playerRunInput.action.IsPressed())
+            {
+                if (moveRate >= 0f) directionRotation = 0f;
+                else directionRotation = 180f;
+                transform.eulerAngles = new Vector3(transform.eulerAngles.x, directionRotation, transform.eulerAngles.z);
+            }
 
+            if (isGunEquipped)
+            {
+                totalShootingTime += Time.deltaTime;
+                if (totalShootingTime >= shootRate)
+                {
+                    totalShootingTime -= shootRate;
+                    ShootBullet();
+                }
+            }
+
+        }
         ManageJump();
 
         if (Keyboard.current != null && Keyboard.current.rKey.wasPressedThisFrame)
