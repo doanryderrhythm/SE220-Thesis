@@ -142,7 +142,7 @@ Transform FindNearestEnemy(){
     }
     void BuildTower()
     {
-        // Implement build logic here (e.g., check player resources, deduct cost, etc.)
+       
     }
 
     void OnMouseEnter()
@@ -231,14 +231,14 @@ public void DisableShooting(float duration)
         isUpgraded = true;
     }
 
-    void UpdateHPBar()
+   void UpdateHPBar()
+{
+    if (hpBarPivot != null && towermaxHP > 0f)
     {
-       if (hpBarPivot != null)
-    {
-        float hpPercentage = Mathf.Clamp01(towerHP / towerStats.towerHP);
+        float hpPercentage = Mathf.Clamp01(towerHP / towermaxHP);
         hpBarPivot.localScale = new Vector3(hpPercentage, 1f, 1f);
     }
-    }
+}
     void LateUpdate()
     {
         UpdateHPBar();
