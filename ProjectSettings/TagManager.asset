@@ -22,7 +22,7 @@ TagManager:
   - Tower
   - Player
   - Enemy
-  - 
+  - Placement Point
   - 
   - 
   - 
@@ -48,6 +48,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Placement Point
+    uniqueID: 3107386749
     locked: 0
   m_RenderingLayers:
   - Default

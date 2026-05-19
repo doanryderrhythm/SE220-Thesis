@@ -53,6 +53,9 @@ public class PlayerController : MonoBehaviour
    private TowerBuilder towerBuilder;
     private bool IsInBuildMode => towerBuilder != null && towerBuilder.IsBuildMode;
 
+    private bool isOnPlacementPoint = false;
+    private Transform placementPoint = null;
+
     void ManageMove()
     {
           if (IsInBuildMode)
@@ -197,6 +200,19 @@ public class PlayerController : MonoBehaviour
                 invulnerableTime = ValueStorer.playerInvulnerableTime;
 
                 animator.Play("player_normal");
+            }
+        }
+
+        if (IsInBuildMode && isOnPlacementPoint)
+        {
+            if (Keyboard.current != null)
+            {
+                if (Keyboard.current.digit1Key.wasPressedThisFrame)
+                    towerBuilder.PlaceTower(TowerType.Normal, placementPoint);
+                else if (Keyboard.current.digit2Key.wasPressedThisFrame)
+                    towerBuilder.PlaceTower(TowerType.Piercing, placementPoint);
+                else if (Keyboard.current.digit3Key.wasPressedThisFrame)
+                    towerBuilder.PlaceTower(TowerType.Sniper, placementPoint);
             }
         }
 
@@ -354,17 +370,11 @@ if (IsInBuildMode)
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        /*if (collision.gameObject.CompareTag(ValueStorer.gunTag))
+        if (LayerMask.LayerToName(collision.gameObject.layer) == ValueStorer.placementPointLM)
         {
-            Gun gun = collision.GetComponent<Gun>();
-            if (gun != null)
-            {
-                gunStats = gun.GetStats();
-                BeginShooting();
-                Destroy(gun.gameObject);
-            }
+            isOnPlacementPoint = true;
+            placementPoint = collision.transform;
         }
-        else*/ 
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -387,7 +397,11 @@ if (IsInBuildMode)
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-
+        if (LayerMask.LayerToName(collision.gameObject.layer) == ValueStorer.placementPointLM)
+        {
+            isOnPlacementPoint = false;
+            placementPoint = null;
+        }
     }
 
     void PickUpGun(Gun gun)

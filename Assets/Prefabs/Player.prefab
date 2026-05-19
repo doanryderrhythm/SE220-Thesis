@@ -79,6 +79,7 @@ GameObject:
   - component: {fileID: 8256317923929693038}
   - component: {fileID: 3915591513084514171}
   - component: {fileID: 3573904336209447563}
+  - component: {fileID: 1658160836868666128}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -217,7 +218,9 @@ MonoBehaviour:
   sideBarrel: {fileID: 3731111766976186741}
   upBarrel: {fileID: 5371703596283955}
   downBarrel: {fileID: 4284153603285660442}
+  health: 100
   shootSpeedBonus: 0
+  shootRateBonus: 0
   damageBonus: 0
 --- !u!114 &3915591513084514171
 MonoBehaviour:
@@ -256,6 +259,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1658160836868666128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2611789595194453044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 528027e356019c5438e8322a180d3987, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerBuilder
+  normalTowerPrefab: {fileID: 586342078466984300, guid: 060a69ee9643bed49911734cc0107748, type: 3}
+  piercingTowerPrefab: {fileID: 9172628518262935540, guid: 5ef74d0f219bb7746a01ca066348a60a, type: 3}
+  sniperTowerPrefab: {fileID: 5585753233392504023, guid: 792de54302da80a458ce88ef520ca004, type: 3}
+  levelData: {fileID: 11400000, guid: 827807b1428d09447b7380c41c65e1a7, type: 2}
+  buildUIPanel: {fileID: 0}
 --- !u!1 &3985425887276335561
 GameObject:
   m_ObjectHideFlags: 0

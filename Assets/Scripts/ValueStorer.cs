@@ -27,6 +27,7 @@ public class ValueStorer : MonoBehaviour
     public const string groundLM = "Default";
     public const string transparentLM = "TransparentFX";
     public const string enemyLM = "Enemy";
+    public const string placementPointLM = "Placement Point";
     #endregion
 
     #region VALUES

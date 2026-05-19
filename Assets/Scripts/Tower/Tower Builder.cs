@@ -36,13 +36,6 @@ public class TowerBuilder : MonoBehaviour
             if (!isBuildMode) EnterBuildMode();
             else ExitBuildMode();
         }
-
-        if (isBuildMode)
-        {
-            if (Keyboard.current.digit1Key.wasPressedThisFrame) PlaceTower(TowerType.Normal);
-            else if (Keyboard.current.digit2Key.wasPressedThisFrame) PlaceTower(TowerType.Piercing);
-            else if (Keyboard.current.digit3Key.wasPressedThisFrame) PlaceTower(TowerType.Sniper);
-        }
     }
 
     int AliveCount()
@@ -64,7 +57,7 @@ public class TowerBuilder : MonoBehaviour
         if (buildUIPanel != null) buildUIPanel.SetActive(false);
     }
 
-    void PlaceTower(TowerType type)
+    public void PlaceTower(TowerType type, Transform placement)
     {
         if (AliveCount() >= maxTowers)
         {
@@ -77,8 +70,7 @@ public class TowerBuilder : MonoBehaviour
             return;
         }
 
-       
-        Vector3 spawnPos = transform.position + new Vector3(0f, 0f, 0f);
+        Vector3 spawnPos = new Vector3(placement.position.x, transform.position.y, 0);
 
         GameObject newTower = Instantiate(prefab, spawnPos, Quaternion.identity);
         aliveTowers.Add(newTower);
