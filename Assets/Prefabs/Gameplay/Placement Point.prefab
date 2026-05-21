@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2730062694271331270}
   - component: {fileID: 1798588779489593415}
   - component: {fileID: 1020259754826003023}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Placement Point
-  m_TagString: Untagged
+  m_TagString: PlacementPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -10,7 +10,6 @@ public class TowerBuilder : MonoBehaviour
     [SerializeField] private GameObject sniperTowerPrefab;
 
     [Header("Build Settings")]
-    
     [SerializeField] private LevelData levelData;
 
     [Header("UI ")]
@@ -19,6 +18,8 @@ public class TowerBuilder : MonoBehaviour
     private bool isBuildMode = false;
     private List<GameObject> aliveTowers = new List<GameObject>();
     private Rigidbody2D rb;
+
+    private Transform currentPlacementPoint = null;
 
     private int maxTowers => levelData != null ? levelData.maxTowers : 3;
 
@@ -33,8 +34,37 @@ public class TowerBuilder : MonoBehaviour
 
         if (Keyboard.current.eKey.wasPressedThisFrame)
         {
-            if (!isBuildMode) EnterBuildMode();
-            else ExitBuildMode();
+            if (!isBuildMode)
+            {
+                if (currentPlacementPoint != null)
+                    EnterBuildMode();
+                else
+                    Debug.Log("Not on Placement point!");
+            }
+            else
+            {
+                ExitBuildMode();
+            }
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("PlacementPoint"))
+        {
+            currentPlacementPoint = other.transform;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("PlacementPoint"))
+        {
+            if (currentPlacementPoint == other.transform)
+            {
+                currentPlacementPoint = null;
+                if (isBuildMode) ExitBuildMode();
+            }
         }
     }
 
@@ -57,8 +87,14 @@ public class TowerBuilder : MonoBehaviour
         if (buildUIPanel != null) buildUIPanel.SetActive(false);
     }
 
-    public void PlaceTower(TowerType type, Transform placement)
+    public void PlaceTower(TowerType type)
     {
+        if (currentPlacementPoint == null)
+        {
+            Debug.Log("Khong co Placement Point nao!");
+            return;
+        }
+
         if (AliveCount() >= maxTowers)
         {
             return;
@@ -70,12 +106,18 @@ public class TowerBuilder : MonoBehaviour
             return;
         }
 
-        Vector3 spawnPos = new Vector3(placement.position.x, transform.position.y, 0);
+        Vector3 spawnPos = new Vector3(currentPlacementPoint.position.x, transform.position.y, 0);
 
         GameObject newTower = Instantiate(prefab, spawnPos, Quaternion.identity);
         aliveTowers.Add(newTower);
 
         ExitBuildMode();
+    }
+
+    public void PlaceTower(TowerType type, Transform placement)
+    {
+        currentPlacementPoint = placement;
+        PlaceTower(type);
     }
 
     GameObject GetPrefabForType(TowerType type)
@@ -86,6 +128,7 @@ public class TowerBuilder : MonoBehaviour
     }
 
     public bool IsBuildMode => isBuildMode;
+    public Transform CurrentPlacementPoint => currentPlacementPoint;
 
     public void OnTowerDestroyed()
     {

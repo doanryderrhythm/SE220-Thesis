@@ -12,6 +12,7 @@ TagManager:
   - Bullet
   - DeflectedBullet
   - Projectile
+  - PlacementPoint
   layers:
   - Default
   - TransparentFX
