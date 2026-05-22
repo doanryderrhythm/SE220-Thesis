@@ -16,6 +16,7 @@ public class Tower : MonoBehaviour
     public Transform firePoint;
     public GameObject projectilePrefab;
 
+    public bool islosing = false;
     [Header("Targeting")]
     public string enemyTag = "Enemy";
     [SerializeField] private TowerStats towerStats; // Reference to the ScriptableObject for stats
@@ -176,6 +177,23 @@ public void DisableShooting(float duration)
         towerHP -= damage;
         if (towerHP <= 0f)
         {
+            if (towerType == TowerType.Nexus)
+            {
+               Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 1000.0f);
+        foreach (Collider2D hit in hitColliders)
+        {
+            if (hit.CompareTag("Enemy"))
+            {
+                Enemy enemy = hit.GetComponent<Enemy>();
+                if (enemy != null)
+                {
+                    enemy.Die(); 
+                }
+            }
+            
+        }
+                Debug.Log("Game Over! Nexus destroyed.");
+            }
             Destroy(gameObject);
         }
     }

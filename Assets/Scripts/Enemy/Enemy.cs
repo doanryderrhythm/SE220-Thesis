@@ -47,6 +47,7 @@ public int enenmyStatus;
 
   void Update()
 {
+  
     Si.gameObject.SetActive(false); // Hide the status indicator by default
     
    SetEnemyStatus(enenmyStatus); // Update the enemy status based on current conditions
@@ -89,7 +90,7 @@ else
 
     public bool isDead = false;
 
- void Die()
+ public void Die()
 {
   
     if (sr != null)
@@ -99,7 +100,7 @@ else
 
     isDead = true;
     speed = 0f;
-        GameManager.Instance.DeleteEnemy(this);
+       GameManager.Instance.DeleteEnemy(this);
         GameEvent.OnEnemyKilled?.Invoke();
     Destroy(gameObject, 0.3f);
 }
@@ -202,7 +203,14 @@ private void PerformAttack()
 
         speed = enemyStats.speed;
     }
-
+else
+        {
+            targetedtower.TakeDamage(damage);
+            if(targetedtower.towerType == TowerType.Nexus)
+            {
+              Die();
+            }
+        }
         attackcooldown = (attactrate > 0) ? (1f / attactrate) : 1f;
 }
 private void DetectInRange()
