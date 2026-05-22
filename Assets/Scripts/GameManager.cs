@@ -14,10 +14,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] Transform spawnPoint;
     [SerializeField] Vector2 safePosition;
     [Header("In-game stats")]
-    private bool isStarted = false;
+    public bool isStarted = false;
     [SerializeField] List<EnemyTimer> timers;
     [SerializeField] List<Enemy> enemies;
     [SerializeField] List<EliteEnemy> eliteEnemies;
+
+    public bool isBuildingTower = false;
 
     private void Awake()
     {
@@ -104,6 +106,9 @@ public class GameManager : MonoBehaviour
 
     public void StartWave()
     {
+        if (isBuildingTower)
+            return;
+
         isStarted = true;
     }
 

@@ -46,7 +46,11 @@ public class TowerBuilder : MonoBehaviour
 
     void EnterBuildMode()
     {
+        if (GameManager.Instance.isStarted)
+            return;
+
         isBuildMode = true;
+        GameManager.Instance.isBuildingTower = true;
         if (rb != null) rb.linearVelocityX = 0f;
         if (buildUIPanel != null) buildUIPanel.SetActive(true);
     }
@@ -54,6 +58,7 @@ public class TowerBuilder : MonoBehaviour
     void ExitBuildMode()
     {
         isBuildMode = false;
+        GameManager.Instance.isBuildingTower = false;
         if (buildUIPanel != null) buildUIPanel.SetActive(false);
     }
 
