@@ -275,17 +275,17 @@ if (IsInBuildMode)
         {
             if (direction.x >= -0.2f && direction.x <= 0.2f)
             {
-                InstantiateBullet(barrel.position - new Vector3(-0.2f, 0, 0));
                 InstantiateBullet(barrel.position - new Vector3(-0.1f, 0, 0));
+                InstantiateBullet(barrel.position - new Vector3(-0.05f, 0, 0));
+                InstantiateBullet(barrel.position - new Vector3(0.05f, 0, 0));
                 InstantiateBullet(barrel.position - new Vector3(0.1f, 0, 0));
-                InstantiateBullet(barrel.position - new Vector3(0.2f, 0, 0));
             }
             else if (direction.y >= -0.2f && direction.y <= 0.2f)
             {
-                InstantiateBullet(barrel.position - new Vector3(0, -0.2f, 0));
                 InstantiateBullet(barrel.position - new Vector3(0, -0.1f, 0));
+                InstantiateBullet(barrel.position - new Vector3(0, -0.05f, 0));
+                InstantiateBullet(barrel.position - new Vector3(0, 0.05f, 0));
                 InstantiateBullet(barrel.position - new Vector3(0, 0.1f, 0));
-                InstantiateBullet(barrel.position - new Vector3(0, 0.2f, 0));
             }
         }
     }
