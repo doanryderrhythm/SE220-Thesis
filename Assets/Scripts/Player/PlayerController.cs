@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] InputActionReference playerRunInput;
     [SerializeField] InputActionReference playerJumpInput;
 
+    [SerializeField] ParticleSystem hurtParticles;
+    [SerializeField] ParticleSystem deadParticles;
+
     void OnEnable()
     {
         playerRunInput.action.Enable();
@@ -335,6 +338,9 @@ if (IsInBuildMode)
         isInvulnerable = true;
 
         health -= value;
+        if (health > 0)
+            Instantiate(hurtParticles.gameObject, transform.position, Quaternion.identity);
+
         animator.Play("player_hurt");
         Debug.Log(health);
 
@@ -345,6 +351,7 @@ if (IsInBuildMode)
     public void DestroyPlayer()
     {
         isDead = true;
+        Instantiate(deadParticles.gameObject, transform.position, Quaternion.identity);
         if (GameManager.Instance)
         {
             GameManager.Instance.StartCoroutine(GameManager.Instance.RespawnPlayer());
