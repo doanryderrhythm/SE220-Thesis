@@ -3,12 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+
+    [Header("Level Management")]
+    [SerializeField] LevelListener levelListener;
+    public int levelIndex;
+    [SerializeField] LevelData selectedLevel;
 
     [SerializeField] GameObject player;
     [SerializeField] Transform spawnPoint;
@@ -35,6 +42,8 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
         GameEvent.OnEnemyKilled += CheckWaveStatus;
         GameEvent.OnWaveStarted += StartWave;
         GameEvent.OnWaveFinished += FinishWave;
@@ -42,6 +51,8 @@ public class GameManager : MonoBehaviour
 
     private void OnDisable()
     {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+
         GameEvent.OnEnemyKilled -= CheckWaveStatus;
         GameEvent.OnWaveStarted -= StartWave;
         GameEvent.OnWaveFinished -= FinishWave;
@@ -49,12 +60,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        timers = new List<EnemyTimer>();
-        enemies = new List<Enemy>();
-        eliteEnemies = new List<EliteEnemy>();
-
-        safePosition = new Vector2(spawnPoint.position.x, spawnPoint.position.y);
-        StartCoroutine(RespawnPlayer());
+        
     }
 
     // Update is called once per frame
@@ -66,6 +72,20 @@ public class GameManager : MonoBehaviour
         {
             GameEvent.OnWaveStarted?.Invoke();
         }
+    }
+
+    public void ReadyToPlay()
+    {
+        selectedLevel = levelListener.GetLevel(levelIndex);
+        Instantiate(selectedLevel.environment.gameObject);
+        spawnPoint = selectedLevel.environment.GetSpawnPoint();
+
+        timers = new List<EnemyTimer>();
+        enemies = new List<Enemy>();
+        eliteEnemies = new List<EliteEnemy>();
+
+        safePosition = new Vector2(spawnPoint.position.x, spawnPoint.position.y);
+        StartCoroutine(RespawnPlayer());
     }
 
     public IEnumerator RespawnPlayer()
@@ -131,5 +151,13 @@ public class GameManager : MonoBehaviour
         timers.Clear();
         enemies.Clear();
         eliteEnemies.Clear();
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name != "Gameplay")
+            return;
+
+        GameManager.Instance.ReadyToPlay();
     }
 }

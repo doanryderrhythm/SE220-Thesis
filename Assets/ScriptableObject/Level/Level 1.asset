@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 440dba8297335b74bbe66402daa6b8af, type: 3}
   m_Name: Level 1
   m_EditorClassIdentifier: Assembly-CSharp::LevelData
+  environment: {fileID: 3989764130624597744, guid: f5a8274a35291fb4894a74ff803d8810, type: 3}
   maxTowers: 3
