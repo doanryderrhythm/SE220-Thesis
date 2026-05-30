@@ -259,9 +259,12 @@ if (IsInBuildMode)
         }
         ManageJump();
 
-        if (Keyboard.current != null && Keyboard.current.rKey.wasPressedThisFrame)
+        if (Keyboard.current != null)
         {
-            DestroyPlayer();
+            if (Keyboard.current.rKey.wasPressedThisFrame)
+                DestroyPlayer();
+            else if (Keyboard.current.escapeKey.wasPressedThisFrame)
+                GameEvent.OnPaused.Invoke();
         }
     }
 

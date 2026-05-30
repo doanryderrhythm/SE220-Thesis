@@ -12,4 +12,8 @@ public static class GameEvent
     public static Action OnEnemyKilled;
     public static Action OnWaveStarted;
     public static Action OnWaveFinished;
+
+    public static Action OnPaused;
+    public static Action OnRetry;
+    public static Action OnRetire;
 }

@@ -47,6 +47,9 @@ public class GameManager : MonoBehaviour
         GameEvent.OnEnemyKilled += CheckWaveStatus;
         GameEvent.OnWaveStarted += StartWave;
         GameEvent.OnWaveFinished += FinishWave;
+
+        GameEvent.OnRetry += Retry;
+        GameEvent.OnRetire += Retire;
     }
 
     private void OnDisable()
@@ -56,7 +59,26 @@ public class GameManager : MonoBehaviour
         GameEvent.OnEnemyKilled -= CheckWaveStatus;
         GameEvent.OnWaveStarted -= StartWave;
         GameEvent.OnWaveFinished -= FinishWave;
+
+        GameEvent.OnRetry -= Retry;
+        GameEvent.OnRetire -= Retire;
     }
+
+    #region
+
+    void Retry()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    void Retire()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Main Menu");
+    }
+
+    #endregion
 
     void Start()
     {
@@ -158,6 +180,6 @@ public class GameManager : MonoBehaviour
         if (scene.name != "Gameplay")
             return;
 
-        GameManager.Instance.ReadyToPlay();
+        ReadyToPlay();
     }
 }
