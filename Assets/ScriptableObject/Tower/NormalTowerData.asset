@@ -16,7 +16,7 @@ MonoBehaviour:
   towerHP: 10
   range: 4
   fireRate: 1
-  projectileDamage: 10
+  projectileDamage: 5
   projectilePierces: 0
   cost: 0
   upgradeCost: 0

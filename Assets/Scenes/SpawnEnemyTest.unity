@@ -446,7 +446,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!61 &178660523
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -508,6 +508,7 @@ MonoBehaviour:
   towerType: 3
   firePoint: {fileID: 625751768}
   projectilePrefab: {fileID: 1003983504}
+  islosing: 0
   enemyTag: Enemy
   towerStats: {fileID: 11400000, guid: 45da309e364eb4e4da65fe4e978bdded, type: 2}
   range: 5
@@ -584,7 +585,7 @@ Transform:
   m_GameObject: {fileID: 178660522}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.2, y: 0.6, z: 0}
+  m_LocalPosition: {x: -8.23, y: 0.58, z: 0}
   m_LocalScale: {x: 0.5355, y: 0.898776, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -612,7 +613,6 @@ MonoBehaviour:
   normalTowerPrefab: {fileID: 586342078466984300, guid: 060a69ee9643bed49911734cc0107748, type: 3}
   piercingTowerPrefab: {fileID: 9172628518262935540, guid: 5ef74d0f219bb7746a01ca066348a60a, type: 3}
   sniperTowerPrefab: {fileID: 5585753233392504023, guid: 792de54302da80a458ce88ef520ca004, type: 3}
-  spawnOffsetX: 1.5
   levelData: {fileID: 11400000, guid: 649ce09a70f8f404b942fd9875e377da, type: 2}
   buildUIPanel: {fileID: 0}
 --- !u!1 &237894599
@@ -663,6 +663,7 @@ MonoBehaviour:
   - {fileID: 168439549}
   enenmyStatus: 0
   Si: {fileID: 0}
+  isDead: 0
 --- !u!212 &237894601
 SpriteRenderer:
   serializedVersion: 2
@@ -1268,13 +1269,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8704075435292467548, guid: 1823205118fb3c049b624267678a6f2b, type: 3}
+      propertyPath: waypoints.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8704075435292467548, guid: 1823205118fb3c049b624267678a6f2b, type: 3}
+      propertyPath: 'waypoints.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2032140328}
+    - target: {fileID: 8704075435292467548, guid: 1823205118fb3c049b624267678a6f2b, type: 3}
+      propertyPath: 'waypoints.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1726867305}
     - target: {fileID: 8722409821897313768, guid: 1823205118fb3c049b624267678a6f2b, type: 3}
       propertyPath: m_Name
       value: Infrant
       objectReference: {fileID: 0}
     - target: {fileID: 8722409821897313768, guid: 1823205118fb3c049b624267678a6f2b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2308,7 +2321,7 @@ Transform:
   m_GameObject: {fileID: 1726867304}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.56, y: 3.42, z: 0}
+  m_LocalPosition: {x: -10.47, y: 1.37, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2514,6 +2527,7 @@ MonoBehaviour:
   abilityRadius: 10
   disableDuration: 1
   explosionRadius: 100
+  isDead: 0
   buffCooldown: 5
   isBuffed: 0
   detectRadius: 5
@@ -2793,6 +2807,7 @@ MonoBehaviour:
   abilityRadius: 10
   disableDuration: 1
   explosionRadius: 100
+  isDead: 0
   buffCooldown: 5
   isBuffed: 0
   detectRadius: 5
@@ -3453,7 +3468,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 586342078466984300, guid: 060a69ee9643bed49911734cc0107748, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 789433288711873625, guid: 060a69ee9643bed49911734cc0107748, type: 3}
       propertyPath: m_Layer

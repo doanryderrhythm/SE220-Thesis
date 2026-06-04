@@ -203,14 +203,6 @@ private void PerformAttack()
 
         speed = enemyStats.speed;
     }
-else
-        {
-            targetedtower.TakeDamage(damage);
-            if(targetedtower.towerType == TowerType.Nexus)
-            {
-              Die();
-            }
-        }
         attackcooldown = (attactrate > 0) ? (1f / attactrate) : 1f;
 }
 private void DetectInRange()
