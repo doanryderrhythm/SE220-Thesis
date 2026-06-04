@@ -66,6 +66,12 @@ public class Tower : MonoBehaviour
       
     }
 
+    void Start()
+    {
+        if (towerType == TowerType.Nexus)
+            GameManager.Instance.nexusTower = this;
+    }
+
     void Update()
     {
      if (firePoint == null || projectilePrefab == null) return;
@@ -192,6 +198,7 @@ public void DisableShooting(float duration)
             }
             
         }
+                GameEvent.OnGameLost.Invoke();
                 Debug.Log("Game Over! Nexus destroyed.");
             }
             Destroy(gameObject);

@@ -16,15 +16,21 @@ public class GameManager : MonoBehaviour
     [SerializeField] LevelListener levelListener;
     public int levelIndex;
     [SerializeField] LevelData selectedLevel;
+    public bool isLevelFinished = false;
 
-    [SerializeField] GameObject player;
+    [SerializeField] GameObject playerPrefab;
     [SerializeField] Transform spawnPoint;
     [SerializeField] Vector2 safePosition;
     [Header("In-game stats")]
     public bool isStarted = false;
     [SerializeField] List<EnemyTimer> timers;
+    [SerializeField] List<EnemySpawner> enemySpawners;
     [SerializeField] List<Enemy> enemies;
     [SerializeField] List<EliteEnemy> eliteEnemies;
+
+    [Space(10.0f)]
+    public PlayerController player;
+    public Tower nexusTower;
 
     public bool isBuildingTower = false;
 
@@ -50,6 +56,8 @@ public class GameManager : MonoBehaviour
 
         GameEvent.OnRetry += Retry;
         GameEvent.OnRetire += Retire;
+
+        GameEvent.OnGameLost += CheckLose;
     }
 
     private void OnDisable()
@@ -62,20 +70,69 @@ public class GameManager : MonoBehaviour
 
         GameEvent.OnRetry -= Retry;
         GameEvent.OnRetire -= Retire;
+
+        GameEvent.OnGameLost -= CheckLose;
     }
 
-    #region
+    #region GAMEPLAY
 
     void Retry()
     {
         Time.timeScale = 1f;
+        isLevelFinished = false;
+        isStarted = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     void Retire()
     {
         Time.timeScale = 1f;
+        isLevelFinished = false;
+        isStarted = false;
         SceneManager.LoadScene("Main Menu");
+    }
+
+    void CheckWin()
+    {
+        if (!timers.All(timer => timer.isOutOfSessions)
+            || nexusTower == null
+            || player == null)
+            return;
+
+        isLevelFinished = true;
+        Debug.Log("You beat the level!");
+    }
+
+    void CheckLose()
+    {
+        List<Enemy> deleteEnemies = new List<Enemy>();
+        List<EliteEnemy> deleteEliteEnemies = new List<EliteEnemy>();
+
+        for (int i = enemies.Count - 1; i >= 0; i--)
+        {
+            if (enemies[i] == null)
+                return;
+
+            deleteEnemies.Add(enemies[i]);
+            enemies.RemoveAt(i);
+        }
+
+        for (int i = eliteEnemies.Count - 1; i >= 0; i--)
+        {
+            if (eliteEnemies[i] == null)
+                return;
+
+            deleteEliteEnemies.Add(eliteEnemies[i]);
+            eliteEnemies.RemoveAt(i);
+        }
+
+        foreach (Enemy enemy in deleteEnemies)
+            Destroy(enemy.gameObject);
+
+        foreach (EliteEnemy enemy in deleteEliteEnemies)
+            Destroy(enemy.gameObject);
+
+        isLevelFinished = true;
     }
 
     #endregion
@@ -103,6 +160,7 @@ public class GameManager : MonoBehaviour
         spawnPoint = selectedLevel.environment.GetSpawnPoint();
 
         timers = new List<EnemyTimer>();
+        enemySpawners = new List<EnemySpawner>();
         enemies = new List<Enemy>();
         eliteEnemies = new List<EliteEnemy>();
 
@@ -113,7 +171,7 @@ public class GameManager : MonoBehaviour
     public IEnumerator RespawnPlayer()
     {
         yield return new WaitForSeconds(ValueStorer.playerRespawnTime);
-        GameObject newPlayer = Instantiate(player, safePosition, Quaternion.identity);
+        GameObject newPlayer = Instantiate(playerPrefab, safePosition, Quaternion.identity);
     }
 
     public void UpdateSafePosition(Vector2 pos)
@@ -146,6 +204,11 @@ public class GameManager : MonoBehaviour
         eliteEnemies.Remove(enemy);
     }
 
+    public void InsertEnemySpawner(EnemySpawner spawner)
+    {
+        enemySpawners.Add(spawner);
+    }
+
     public void StartWave()
     {
         if (isBuildingTower)
@@ -156,7 +219,7 @@ public class GameManager : MonoBehaviour
 
     void CheckWaveStatus()
     {
-        bool isTimerFinished = timers.Count == 0;
+        bool isTimerFinished = timers.All(timer => !timer.isStarted);
         bool isEnemyFinished = enemies.Count == 0;
         bool isEliteEnemyFinished = eliteEnemies.Count == 0;
 
@@ -173,6 +236,11 @@ public class GameManager : MonoBehaviour
         timers.Clear();
         enemies.Clear();
         eliteEnemies.Clear();
+
+        if (!enemySpawners.All(spawner => spawner.isFinishedSpawn))
+            return;
+
+        CheckWin();
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)

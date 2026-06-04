@@ -16,4 +16,6 @@ public static class GameEvent
     public static Action OnPaused;
     public static Action OnRetry;
     public static Action OnRetire;
+
+    public static Action OnGameLost;
 }

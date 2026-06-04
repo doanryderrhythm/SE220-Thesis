@@ -16,6 +16,7 @@ public class EnemySpawner : MonoBehaviour
     public Transform spawnPoint;
     public Transform[] routeWaypoints; 
     public float timeBetweenSpawns = 2f;
+    public bool isFinishedSpawn = false;
 
     [Header("Spawn Pattern")]
     public string[] spawnPattern = { "1", "1", "2", "3", "A" };
@@ -36,7 +37,7 @@ public class EnemySpawner : MonoBehaviour
             SpawnEnemyByCode(code, routeWaypoints);
             yield return new WaitForSeconds(timeBetweenSpawns);
         }
-        Debug.Log("Đã spawn xong toàn bộ đợt quái!");
+        isFinishedSpawn = true;
     }
 
     private void SpawnEnemyByCode(string code, Transform[] pathToFollow)

@@ -178,6 +178,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        GameManager.Instance.player = this;
+
         animator = GetComponent<Animator>();
         animator.Play("player_normal");
     }
@@ -194,6 +196,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.isLevelFinished)
+            return;
+
         if (isInvulnerable)
         {
             invulnerableTime -= Time.deltaTime;
@@ -260,10 +265,8 @@ if (IsInBuildMode)
         ManageJump();
 
         if (Keyboard.current != null)
-        {
-            if (Keyboard.current.rKey.wasPressedThisFrame)
-                DestroyPlayer();
-            else if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {   
+            if (Keyboard.current.escapeKey.wasPressedThisFrame)
                 GameEvent.OnPaused.Invoke();
         }
     }
@@ -335,7 +338,7 @@ if (IsInBuildMode)
 
    public void HurtPlayer(float value)
     {
-        if (isInvulnerable)
+        if (isInvulnerable || GameManager.Instance.isLevelFinished)
             return;
 
         isInvulnerable = true;
@@ -355,10 +358,7 @@ if (IsInBuildMode)
     {
         isDead = true;
         Instantiate(deadParticles.gameObject, transform.position, Quaternion.identity);
-        if (GameManager.Instance)
-        {
-            GameManager.Instance.StartCoroutine(GameManager.Instance.RespawnPlayer());
-        }
+        GameEvent.OnGameLost.Invoke();
         Destroy(gameObject);
     }
 

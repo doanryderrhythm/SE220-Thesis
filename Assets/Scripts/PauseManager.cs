@@ -24,6 +24,7 @@ public class PauseManager : MonoBehaviour
     void Pause()
     {
         cg.alpha = 1f;
+        cg.interactable = true;
         cg.blocksRaycasts = true;
 
         Time.timeScale = 0f;
@@ -32,6 +33,7 @@ public class PauseManager : MonoBehaviour
     public void Resume()
     {
         cg.alpha = 0f;
+        cg.interactable = false;
         cg.blocksRaycasts = false;
 
         Time.timeScale = 1f;

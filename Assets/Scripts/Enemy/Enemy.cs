@@ -206,7 +206,7 @@ private void PerformAttack()
 else
         {
             targetedtower.TakeDamage(damage);
-            if(targetedtower.towerType == TowerType.Nexus)
+            if(targetedtower && targetedtower.towerType == TowerType.Nexus)
             {
               Die();
             }

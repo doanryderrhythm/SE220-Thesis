@@ -18,6 +18,7 @@ public class EnemyTimer : MonoBehaviour
     }
 
     public bool isStarted = false;
+    public bool isOutOfSessions = false;
     private int waveSessionIndex = 0;
     private int waveIndex = 0;
 
@@ -46,6 +47,11 @@ public class EnemyTimer : MonoBehaviour
                 for (int k = 0; k < waveSessions[i].waves[j].enemies.Length; k++)
                 {
                     waveSessions[i].waves[j].enemies[k].SetActive(false);
+                    EnemySpawner spawner = waveSessions[i].waves[j].enemies[k].GetComponent<EnemySpawner>();
+
+                    if (spawner == null) continue;
+
+                    GameManager.Instance.InsertEnemySpawner(spawner);
                 }
             }
         }
@@ -80,7 +86,11 @@ public class EnemyTimer : MonoBehaviour
         {
             if (waveSessionIndex < waveSessions.Length)
                 timerText.text = "PAUSED";
-            else timerText.text = "OUT OF WAVES";
+            else
+            {
+                isOutOfSessions = true;
+                timerText.text = "OUT OF WAVES";
+            }
         }
     }
 
@@ -88,7 +98,7 @@ public class EnemyTimer : MonoBehaviour
     {
         for (int i = 0; i < waveSessions[waveSessionIndex].waves[waveIndex].enemies.Length; i++)
         {
-            waveSessions[waveSessionIndex].waves[waveIndex].enemies[i].SetActive(true);
+            waveSessions[waveSessionIndex].waves[waveIndex].enemies[i].gameObject.SetActive(true);
         }
     }
 

@@ -47,11 +47,14 @@ MonoBehaviour:
   levelListener: {fileID: 11400000, guid: 875892cfcf9c1424ca70429938ed32e6, type: 2}
   levelIndex: 0
   selectedLevel: {fileID: 0}
-  player: {fileID: 0}
+  isLevelFinished: 0
+  playerPrefab: {fileID: 2611789595194453044, guid: 0e86aff0b7989764dbbd268313774664, type: 3}
   spawnPoint: {fileID: 0}
   safePosition: {x: 0, y: 0}
   isStarted: 0
   timers: []
   enemies: []
   eliteEnemies: []
+  player: {fileID: 0}
+  nexusTower: {fileID: 0}
   isBuildingTower: 0
