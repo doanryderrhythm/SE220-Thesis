@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 3803543892527040652}
   - component: {fileID: 5560216689472825799}
   - component: {fileID: 4272095431053019569}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Archer
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -289,6 +289,7 @@ MonoBehaviour:
   - {fileID: 0}
   enenmyStatus: 0
   Si: {fileID: 8868915864196979128}
+  isDead: 0
 --- !u!114 &4272095431053019569
 MonoBehaviour:
   m_ObjectHideFlags: 0

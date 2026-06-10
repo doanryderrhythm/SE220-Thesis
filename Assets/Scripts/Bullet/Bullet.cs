@@ -30,6 +30,13 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (LayerMask.LayerToName(collision.gameObject.layer) == ValueStorer.groundLM &&
+            !collision.CompareTag("Enemy"))
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         if (!collision.CompareTag("Enemy")) return;
 
         Enemy enemy = collision.GetComponent<Enemy>();

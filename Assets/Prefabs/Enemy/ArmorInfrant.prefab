@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 4209152714400656271}
   - component: {fileID: 5298419029853718184}
   - component: {fileID: -1777612011574254077}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: ArmorInfrant
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -284,6 +284,7 @@ MonoBehaviour:
   waypoints: []
   enenmyStatus: 0
   Si: {fileID: 6411737191020833447}
+  isDead: 0
 --- !u!114 &-1777612011574254077
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 8229276950976397958}
   - component: {fileID: 8704075435292467548}
   - component: {fileID: 3545458280835064103}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Infrant
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -284,6 +284,7 @@ MonoBehaviour:
   waypoints: []
   enenmyStatus: 0
   Si: {fileID: 7782952410262899017}
+  isDead: 0
 --- !u!114 &3545458280835064103
 MonoBehaviour:
   m_ObjectHideFlags: 0
