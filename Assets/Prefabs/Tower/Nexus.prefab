@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 135956732598668752}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.04, y: 0.55, z: 0}
+  m_LocalPosition: {x: 0.04, y: 10.280001, z: 0}
   m_LocalScale: {x: 0.8893, y: 0.3297, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -211,7 +211,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.2, y: 0.6, z: 0}
-  m_LocalScale: {x: 0.5355, y: 0.898776, z: 1}
+  m_LocalScale: {x: 0.3276189, y: 0.2997418, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3452375517037925342}
@@ -267,7 +267,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 1416092188172044404, guid: 496ca04984bd93446b162f81cc3655ad, type: 3}
   m_Color: {r: 0.23210704, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -292,6 +292,7 @@ MonoBehaviour:
   towerType: 3
   firePoint: {fileID: 3452375517037925342}
   projectilePrefab: {fileID: 0}
+  islosing: 0
   enemyTag: Enemy
   towerStats: {fileID: 11400000, guid: 45da309e364eb4e4da65fe4e978bdded, type: 2}
   range: 5
@@ -338,7 +339,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 7.82, y: 9.61}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -371,8 +372,8 @@ Transform:
   m_GameObject: {fileID: 6422075887405031648}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.43, y: -0.061, z: 0}
-  m_LocalScale: {x: 1, y: 1.0964912, z: 1}
+  m_LocalPosition: {x: -1.3, y: 4.51, z: 0}
+  m_LocalScale: {x: 2.79036, y: 1.0701754, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 566645174924752497}
