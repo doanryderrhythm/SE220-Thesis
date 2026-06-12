@@ -326,13 +326,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2980396373006784847, guid: 8bdca02f9946d1b489bb22fefe0afc2a, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2980396373006784847, guid: 8bdca02f9946d1b489bb22fefe0afc2a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6184843020523533882}
   m_SourcePrefab: {fileID: 100100000, guid: 8bdca02f9946d1b489bb22fefe0afc2a, type: 3}
+--- !u!1 &4689964696925692074 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2980396373006784847, guid: 8bdca02f9946d1b489bb22fefe0afc2a, type: 3}
+  m_PrefabInstance: {fileID: 7514929698775661029}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6184843020523533882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4689964696925692074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87c9128729d12c4448333f5b5fb3f14f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlacementPoint
+  targetTower: {fileID: 0}
 --- !u!4 &5596080086946730531 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2730062694271331270, guid: 8bdca02f9946d1b489bb22fefe0afc2a, type: 3}

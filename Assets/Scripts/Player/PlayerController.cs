@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
     private bool IsInBuildMode => towerBuilder != null && towerBuilder.IsBuildMode;
 
     private bool isOnPlacementPoint = false;
-    private Transform placementPoint = null;
+    private PlacementPoint placementPoint = null;
 
     void ManageMove()
     {
@@ -211,18 +211,18 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (IsInBuildMode && isOnPlacementPoint)
-        {
-            if (Keyboard.current != null)
-            {
-                if (Keyboard.current.digit1Key.wasPressedThisFrame)
-                    towerBuilder.PlaceTower(TowerType.Normal, placementPoint);
-                else if (Keyboard.current.digit2Key.wasPressedThisFrame)
-                    towerBuilder.PlaceTower(TowerType.Piercing, placementPoint);
-                else if (Keyboard.current.digit3Key.wasPressedThisFrame)
-                    towerBuilder.PlaceTower(TowerType.Sniper, placementPoint);
-            }
-        }
+        //if (IsInBuildMode && isOnPlacementPoint)
+        //{
+        //    if (Keyboard.current != null)
+        //    {
+        //        if (Keyboard.current.digit1Key.wasPressedThisFrame)
+        //            towerBuilder.PlaceTower(TowerType.Normal, placementPoint);
+        //        else if (Keyboard.current.digit2Key.wasPressedThisFrame)
+        //            towerBuilder.PlaceTower(TowerType.Piercing, placementPoint);
+        //        else if (Keyboard.current.digit3Key.wasPressedThisFrame)
+        //            towerBuilder.PlaceTower(TowerType.Sniper, placementPoint);
+        //    }
+        //}
 
         moveRate = playerRunInput.action.ReadValue<float>();
         if (playerRunInput.action.IsPressed())
@@ -383,7 +383,10 @@ if (IsInBuildMode)
         if (LayerMask.LayerToName(collision.gameObject.layer) == ValueStorer.placementPointLM)
         {
             isOnPlacementPoint = true;
-            placementPoint = collision.transform;
+            if (collision.TryGetComponent<PlacementPoint>(out PlacementPoint point))
+            {
+                towerBuilder.SetPlacementPoint(point);
+            }
         }
     }
 
@@ -410,7 +413,10 @@ if (IsInBuildMode)
         if (LayerMask.LayerToName(collision.gameObject.layer) == ValueStorer.placementPointLM)
         {
             isOnPlacementPoint = false;
-            placementPoint = null;
+            if (collision.TryGetComponent<PlacementPoint>(out PlacementPoint point))
+            {
+                towerBuilder.SetPlacementPoint(null);
+            }
         }
     }
 
