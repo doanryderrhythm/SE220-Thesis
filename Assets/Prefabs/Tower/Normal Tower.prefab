@@ -86,7 +86,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.740566, g: 0.034932353, b: 0.034932353, a: 1}
+  m_Color: {r: 1, g: 0.7921569, b: 0.7921569, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -110,6 +110,7 @@ MonoBehaviour:
   towerType: 0
   firePoint: {fileID: 608836203868192672}
   projectilePrefab: {fileID: 987095622757033157, guid: 977a7f165ece0ad4c831e0c430025de7, type: 3}
+  islosing: 0
   enemyTag: Enemy
   towerStats: {fileID: 11400000, guid: 8aa77dafa08be5d41be002a64a09e451, type: 2}
   range: 5

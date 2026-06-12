@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SideGun
   m_EditorClassIdentifier: Assembly-CSharp::GunStats
   gunType: 0
-  shootSpeed: 30
-  shootRate: 0.1
+  shootSpeed: 2
+  shootRate: 5
