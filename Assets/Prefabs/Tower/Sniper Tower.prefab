@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 1383374965941298395}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.426, y: -0.02, z: 0}
+  m_LocalPosition: {x: -0.4260003, y: 0.6459998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -58,7 +58,7 @@ Transform:
   m_GameObject: {fileID: 3052594439915644246}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.04, y: 0.55, z: 0}
+  m_LocalPosition: {x: 0.04, y: 1.216, z: 0}
   m_LocalScale: {x: 0.8893, y: 0.3297, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -152,7 +152,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.38, y: 0.75, z: 0}
-  m_LocalScale: {x: 0.5355, y: 0.9855, z: 1}
+  m_LocalScale: {x: 0.49978215, y: 0.8301852, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1325119497836088896}
@@ -208,7 +208,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 6532167195337600192, guid: 46582a311c2ffd94180a842a5a982917, type: 3}
   m_Color: {r: 1, g: 0.9251066, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -233,6 +233,7 @@ MonoBehaviour:
   towerType: 2
   firePoint: {fileID: 1325119497836088896}
   projectilePrefab: {fileID: 987095622757033157, guid: 977a7f165ece0ad4c831e0c430025de7, type: 3}
+  islosing: 0
   enemyTag: Enemy
   towerStats: {fileID: 11400000, guid: bc7f168a341bd1841ad1aa8fce728b87, type: 2}
   range: 5
@@ -279,7 +280,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.7, y: 2.41}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 9.441765, y: -0.4140787, z: 0}
-  m_LocalScale: {x: 1.3298825, y: 1.4846609, z: 1}
+  m_LocalScale: {x: 0.41916546, y: 0.4288051, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3981184213531943982}
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: -2576408158696965075, guid: 34f073869e75c134bacde630bb624433, type: 3}
   m_Color: {r: 0.27890262, g: 0.30809364, b: 0.5424528, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -160,7 +160,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 4.9, y: 4.98}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -192,6 +192,7 @@ MonoBehaviour:
   abilityRadius: 10
   disableDuration: 1
   explosionRadius: 100
+  isDead: 0
   buffCooldown: 5
   isBuffed: 0
   detectRadius: 1
