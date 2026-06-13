@@ -128,7 +128,7 @@ else
         Transform target = waypoints[waypointIndex];
         transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
 
-        if (Vector2.Distance(transform.position, target.position) < 0.1f)
+        if (Vector2.Distance(transform.position, target.position) < 0.1f && waypointIndex < waypoints.Length - 1)
         {
             waypointIndex = (waypointIndex + 1) % waypoints.Length;
         }
