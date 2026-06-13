@@ -31,7 +31,7 @@ public class TowerBuilder : MonoBehaviour
     [SerializeField] private Image sniperTowerSprite;
 
     private GameObject targetTower;
-    private PlacementPoint placementPoint;
+    [SerializeField] private PlacementPoint placementPoint;
     private int selectedIndex = 0;
     private int currentIndex = 0;
 
@@ -148,9 +148,11 @@ public class TowerBuilder : MonoBehaviour
     }
     void ResetTowerBorders()
     {
-        normalTowerSprite.color = Color.gray;
-        piercingTowerSprite.color = Color.gray;
-        sniperTowerSprite.color = Color.gray;
+        return;
+
+        //normalTowerSprite.color = Color.gray;
+        //piercingTowerSprite.color = Color.gray;
+        //sniperTowerSprite.color = Color.gray;
     }
     void ShowCurrentTower()
     {
@@ -201,10 +203,10 @@ public class TowerBuilder : MonoBehaviour
             selectedIndex = 0;
             targetTower = null;
 
-            ResetTowerBorders();
+            //ResetTowerBorders();
 
-            if (currentIndex != 0)
-                HighlightCurrentTower();
+            //if (currentIndex != 0)
+                //HighlightCurrentTower();
 
             return;
         }
@@ -217,20 +219,20 @@ public class TowerBuilder : MonoBehaviour
         {
             case 1:
                 targetTower = normalTowerPrefab;
-                normalTowerSprite.color = Color.white;
-                description.text = "Normal Tower";
+                //normalTowerSprite.color = Color.white;
+                //description.text = "Normal Tower";
                 break;
 
             case 2:
                 targetTower = piercingTowerPrefab;
-                piercingTowerSprite.color = Color.white;
-                description.text = "Piercing Tower";
+                //piercingTowerSprite.color = Color.white;
+                //description.text = "Piercing Tower";
                 break;
 
             case 3:
                 targetTower = sniperTowerPrefab;
-                sniperTowerSprite.color = Color.white;
-                description.text = "Sniper Tower";
+                //sniperTowerSprite.color = Color.white;
+                //description.text = "Sniper Tower";
                 break;
         }
     }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5043277615093403954}
   - component: {fileID: 8759283223298296698}
   - component: {fileID: -2573582267712803041}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TowerBullet
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -109,6 +109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
   damage: 5
   piercing: 0
+  lifetime: 5
 --- !u!61 &5043277615093403954
 BoxCollider2D:
   m_ObjectHideFlags: 0
