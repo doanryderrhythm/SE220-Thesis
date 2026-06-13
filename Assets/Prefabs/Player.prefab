@@ -278,7 +278,11 @@ MonoBehaviour:
   piercingTowerPrefab: {fileID: 9172628518262935540, guid: 5ef74d0f219bb7746a01ca066348a60a, type: 3}
   sniperTowerPrefab: {fileID: 5585753233392504023, guid: 792de54302da80a458ce88ef520ca004, type: 3}
   levelData: {fileID: 11400000, guid: 827807b1428d09447b7380c41c65e1a7, type: 2}
-  buildUIPanel: {fileID: 0}
+  buildUIPanel: {fileID: 540521517644514659, guid: 07843ab7630238f4d87f1c3db9eb4a45, type: 3}
+  description: {fileID: 0}
+  normalTowerSprite: {fileID: 0}
+  piercingTowerSprite: {fileID: 0}
+  sniperTowerSprite: {fileID: 0}
 --- !u!96 &3546240305161580934
 TrailRenderer:
   serializedVersion: 4
