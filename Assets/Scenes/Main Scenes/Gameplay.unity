@@ -408,7 +408,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.084905684, g: 0.084905684, b: 0.084905684, a: 0}
+  m_BackGroundColor: {r: 0.2264151, g: 0.2264151, b: 0.2264151, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -663,6 +663,10 @@ PrefabInstance:
     - target: {fileID: 1461979724889464365, guid: cc16292bc7244554f821220e7c6f1498, type: 3}
       propertyPath: m_Name
       value: Pause Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 1461979724889464365, guid: cc16292bc7244554f821220e7c6f1498, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4235292638552958964, guid: cc16292bc7244554f821220e7c6f1498, type: 3}
       propertyPath: m_Pivot.x
