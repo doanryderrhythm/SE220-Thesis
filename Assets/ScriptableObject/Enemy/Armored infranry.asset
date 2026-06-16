@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
   enemyType: 0
   enenmyStatus: 0
-  health: 25
-  speed: 2
+  health: 30
+  speed: 1
   reward: 0
   armor: 10
   damage: 2

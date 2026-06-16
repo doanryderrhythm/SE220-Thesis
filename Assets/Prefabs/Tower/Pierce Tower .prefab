@@ -299,7 +299,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -6099338589801976772, guid: f023a4e7f6402534b831735c1757b3bf, type: 3}
   m_Color: {r: 0, g: 1, b: 0.9372549, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -323,7 +323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Tower
   towerType: 1
   firePoint: {fileID: 5268849651965366684}
-  projectilePrefab: {fileID: 987095622757033157, guid: 977a7f165ece0ad4c831e0c430025de7, type: 3}
+  projectilePrefab: {fileID: 987095622757033157, guid: d26f3a4890fc4464b92094f416961025, type: 3}
   islosing: 0
   enemyTag: Enemy
   towerStats: {fileID: 11400000, guid: 8aa77dafa08be5d41be002a64a09e451, type: 2}
