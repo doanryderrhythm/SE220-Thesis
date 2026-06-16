@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8759283223298296698}
   - component: {fileID: -2573582267712803041}
   m_Layer: 10
-  m_Name: TowerBullet
+  m_Name: SniperBullet
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,13 +29,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 987095622757033157}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.027502695, y: 0.028530339, z: -0.71938854, w: 0.69347656}
-  m_LocalPosition: {x: -7.774, y: 0.092, z: -0.019}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.34, y: 0.35, z: 0}
   m_LocalScale: {x: 0.35219154, y: 0.4263661, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0.166, y: 4.539, z: -92.095}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8450173916405661318
 SpriteRenderer:
   serializedVersion: 2
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 8913262254792383562, guid: 6ecf1caf0838ff14aa9ad9aa1766a7cf, type: 3}
+  m_Sprite: {fileID: -4047045780794424906, guid: 5fd1c1fd5f778054183bd14b1c65578e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -144,17 +144,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.048072338, y: 0.48047757}
+  m_Offset: {x: 0.5526068, y: 0.016379297}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.42, y: 0.42}
+    oldSize: {x: 0.82, y: 0.5}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.6131139, y: 1.7677217}
+  m_Size: {x: 1.6040449, y: 1.941656}
   m_EdgeRadius: 0
 --- !u!50 &8759283223298296698
 Rigidbody2D:
@@ -241,6 +241,15 @@ TrailRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
         time: 0.00614579
         value: 0.049017966
         inSlope: 0
@@ -254,7 +263,7 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.6933962, g: 0.38317275, b: 0.2747419, a: 1}
+      key0: {r: 0.9471613, g: 0.9481132, b: 0, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
