@@ -281,7 +281,7 @@ MonoBehaviour:
   - {fileID: 0}
   disableCooldown: 4
   abilityRadius: 10
-  disableDuration: 1
+  disableDuration: 2
   explosionRadius: 100
   isDead: 0
   buffCooldown: 5
