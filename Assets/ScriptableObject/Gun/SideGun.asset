@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GunStats
   gunType: 0
   shootSpeed: 2
-  shootRate: 5
+  shootRate: 1.5

@@ -283,6 +283,7 @@ MonoBehaviour:
   normalTowerSprite: {fileID: 0}
   piercingTowerSprite: {fileID: 0}
   sniperTowerSprite: {fileID: 0}
+  placementPoint: {fileID: 0}
 --- !u!96 &3546240305161580934
 TrailRenderer:
   serializedVersion: 4
