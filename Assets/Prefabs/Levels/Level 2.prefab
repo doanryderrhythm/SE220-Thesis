@@ -4702,7 +4702,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 574017309479888692, guid: 184f9c896bcb0f94ca6b9ee3c0e89903, type: 3}
       propertyPath: waveSessions.Array.data[0].waves.Array.data[2].waitTime
-      value: 20
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 574017309479888692, guid: 184f9c896bcb0f94ca6b9ee3c0e89903, type: 3}
       propertyPath: waveSessions.Array.data[0].waves.Array.data[0].enemies.Array.size
