@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TowerStats
   towerType: 0
   towerHP: 100
-  range: 5
-  fireRate: 1.5
+  range: 4
+  fireRate: 2
   projectileDamage: 5
   projectilePierces: 0
   cost: 0

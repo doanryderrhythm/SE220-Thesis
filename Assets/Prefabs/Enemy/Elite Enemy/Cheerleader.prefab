@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6735444042550582900}
   - component: {fileID: 5397198362479987300}
   - component: {fileID: 4380157128233518176}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Cheerleader
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EliteEnemy
   eliteEnemyStats: {fileID: 11400000, guid: 7e16e1810fe46dd42941a8555428d086, type: 2}
-  type: 0
+  type: 2
   waypoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -209,7 +209,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9153588356171057344}
   - component: {fileID: 8237947039893661004}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Status
   m_TagString: Status
   m_Icon: {fileID: 0}

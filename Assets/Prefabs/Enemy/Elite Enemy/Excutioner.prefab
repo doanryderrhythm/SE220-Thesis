@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EliteEnemy
   eliteEnemyStats: {fileID: 11400000, guid: be3ab90db5611a843b796d33997cde50, type: 2}
-  type: 0
+  type: 1
   waypoints:
   - {fileID: 0}
   - {fileID: 0}
