@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PiercingTowerData
   m_EditorClassIdentifier: Assembly-CSharp::TowerStats
   towerType: 0
-  towerHP: 50
+  towerHP: 100
   range: 5
   fireRate: 1
   projectileDamage: 5
