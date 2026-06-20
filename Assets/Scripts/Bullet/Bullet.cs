@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
     public Vector2 direction;
     public float speed;
 
-    public float damage = 5;
+    public float damage = 1f;
     public bool piercing = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -25,7 +25,7 @@ public class Bullet : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.linearVelocity = new Vector2(direction.x * speed, direction.y * speed);
+        rb.linearVelocity = new Vector2(direction.x *4* speed, direction.y *4* speed);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -40,9 +40,17 @@ public class Bullet : MonoBehaviour
         if (!collision.CompareTag("Enemy")) return;
 
         Enemy enemy = collision.GetComponent<Enemy>();
-        if (enemy == null) return;
+        EliteEnemy eliteEnemy = collision.GetComponent<EliteEnemy>();
+        if (enemy == null && eliteEnemy == null) return;
 
-        enemy.TakeDamage(damage, piercing);
+        if (enemy != null)
+        {
+            enemy.TakeDamage(damage, piercing);
+        }
+        if (eliteEnemy != null)
+        {
+            eliteEnemy.TakeDamage(damage, piercing);
+        }
         Destroy(gameObject);
     }
 
