@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
   enemyType: 2
   enenmyStatus: 0
-  health: 25
+  health: 30
   speed: 1
   reward: 0
   armor: 0
-  damage: 2
+  damage: 5
   attackRate: 1
   attackcooldown: 1
-  attackRange: 3
+  attackRange: 5
   targetedTower: {fileID: 0}

@@ -137,7 +137,7 @@ Transform FindNearestEnemy(){
         Rigidbody2D rb = spawned.GetComponent<Rigidbody2D>();
         if (rb != null)
         {
-            rb.linearVelocity = firePoint.up * 35f;
+            rb.linearVelocity = firePoint.up * 10f;
             Debug.DrawRay(firePoint.position, firePoint.up * 2, Color.red, 1f);
         }
     }

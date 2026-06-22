@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SniperTowerData 1
   m_EditorClassIdentifier: Assembly-CSharp::TowerStats
   towerType: 0
-  towerHP: 40
+  towerHP: 100
   range: 50
   fireRate: 0.5
   projectileDamage: 5
