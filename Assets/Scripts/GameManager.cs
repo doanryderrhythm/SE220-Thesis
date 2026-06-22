@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     [Header("Level Management")]
     [SerializeField] LevelListener levelListener;
     public int levelIndex;
-    [SerializeField] LevelData selectedLevel;
+    public LevelData selectedLevel;
     public bool isLevelFinished = false;
 
     [SerializeField] GameObject playerPrefab;

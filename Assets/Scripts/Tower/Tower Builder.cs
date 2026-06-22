@@ -274,6 +274,10 @@ public class TowerBuilder : MonoBehaviour
             aliveTowers.Remove(placementPoint.CurrentTower);
             Destroy(placementPoint.CurrentTower);
         }
+
+        if (aliveTowers.Count >= GameManager.Instance.selectedLevel.maxTowers)
+            return;
+
         Vector3 spawnPos = placementPoint.transform.position + new Vector3(0, 0.5f, 0);
         GameObject newTower = Instantiate(targetTower, spawnPos, Quaternion.identity);
         aliveTowers.Add(newTower);
