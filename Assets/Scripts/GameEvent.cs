@@ -18,4 +18,7 @@ public static class GameEvent
     public static Action OnRetire;
 
     public static Action OnGameLost;
+
+    public static Action OnCloseBuildMenu;
+    public static Action<PlacementPoint> OnOpenBuildMenu;
 }

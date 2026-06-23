@@ -15,25 +15,13 @@ public class TowerBuilder : MonoBehaviour
 
     [SerializeField] private LevelData levelData;
 
-    [Header("UI ")]
-    [SerializeField] private GameObject buildUIPanel;
-    [SerializeField] private TMP_Text description;
-
-
     private bool isBuildMode = false;
-    private List<GameObject> aliveTowers = new List<GameObject>();
+    public List<GameObject> aliveTowers = new List<GameObject>();
     private Rigidbody2D rb;
 
-    private int maxTowers => levelData != null ? levelData.maxTowers : 3;
-    [Header("Tower Sprite")]
-    [SerializeField] private Image normalTowerSprite;
-    [SerializeField] private Image piercingTowerSprite;
-    [SerializeField] private Image sniperTowerSprite;
+    public int maxTowers => levelData != null ? levelData.maxTowers : 3;
 
-    private GameObject targetTower;
     [SerializeField] private PlacementPoint placementPoint;
-    private int selectedIndex = 0;
-    private int currentIndex = 0;
 
     void Awake()
     {
@@ -46,40 +34,23 @@ public class TowerBuilder : MonoBehaviour
 
         if (Keyboard.current.eKey.wasPressedThisFrame)
         {
-            Debug.Log("E pressed");
-
             if (!isBuildMode)
             {
-                Debug.Log("Enter Build Mode");
                 EnterBuildMode();
             }
             else
             {
-                Debug.Log("Exit Build Mode");
-                ConfirmTower();
+                ConfirmBuild();
+            }
+        }
+        if (Keyboard.current.rKey.wasPressedThisFrame)
+        {
+            if (isBuildMode)
+            {
                 ExitBuildMode();
             }
         }
-        if (isBuildMode)
-        {
-            if (Keyboard.current.digit1Key.wasPressedThisFrame)
-            {
-                Debug.Log(1);
-                ToggleTowerSelection(1);
-            }
 
-            if (Keyboard.current.digit2Key.wasPressedThisFrame)
-            {
-                Debug.Log(2);
-                ToggleTowerSelection(2);
-            }
-
-            if (Keyboard.current.digit3Key.wasPressedThisFrame)
-            {
-                Debug.Log(3);
-                ToggleTowerSelection(3);
-            }
-        }
     }
 
     int AliveCount()
@@ -96,20 +67,16 @@ public class TowerBuilder : MonoBehaviour
             return;
 
         isBuildMode = true;
-        GameManager.Instance.isBuildingTower = true;
-        if (rb != null) rb.linearVelocityX = 0f;
-        if (buildUIPanel != null) buildUIPanel.SetActive(true);
-        ResetTowerBorders();
-        selectedIndex = 0;
-        currentIndex = 0;
-        ShowCurrentTower();
+        BuildUIManager.Instance.SetCountBuild(AliveCount(), maxTowers);
+        GameEvent.OnOpenBuildMenu?.Invoke(placementPoint);
+        BuildUIManager.Instance.SetBuildMode(isBuildMode);
     }
 
     void ExitBuildMode()
     {
         isBuildMode = false;
-        GameManager.Instance.isBuildingTower = false;
-        if (buildUIPanel != null) buildUIPanel.SetActive(false);
+        GameEvent.OnCloseBuildMenu.Invoke();
+        BuildUIManager.Instance.SetBuildMode(isBuildMode);
     }
 
     public void PlaceTower(TowerType type, Transform placement)
@@ -125,12 +92,13 @@ public class TowerBuilder : MonoBehaviour
             return;
         }
 
-        Vector3 spawnPos = new Vector3(placement.position.x, transform.position.y + 0.5f, 0);
+        Vector3 spawnPos = placementPoint.transform.position;
 
         GameObject newTower = Instantiate(prefab, spawnPos, Quaternion.identity);
         aliveTowers.Add(newTower);
+        placementPoint.SetTower(newTower);
 
-        ExitBuildMode();
+        ConfirmBuild();
     }
 
     GameObject GetPrefabForType(TowerType type)
@@ -146,145 +114,55 @@ public class TowerBuilder : MonoBehaviour
     {
         aliveTowers.RemoveAll(t => t == null);
     }
-    void ResetTowerBorders()
+    void ReplaceTower(TowerType type)
     {
-        return;
-
-        //normalTowerSprite.color = Color.gray;
-        //piercingTowerSprite.color = Color.gray;
-        //sniperTowerSprite.color = Color.gray;
-    }
-    void ShowCurrentTower()
-    {
-        if (placementPoint == null)
-            return;
-
-        GameObject tower = placementPoint.CurrentTower;
-
-        if (tower == null)
-            return;
-
-        Tower towerScript = tower.GetComponent<Tower>();
-
-        if (towerScript == null)
-            return;
-
-        switch (towerScript.towerType)
-        {
-            case TowerType.Normal:
-                currentIndex = 1;
-                selectedIndex = 1;
-                targetTower = normalTowerPrefab;
-                normalTowerSprite.color = Color.white;
-                description.text = "Normal Tower";
-                break;
-
-            case TowerType.Piercing:
-                currentIndex = 2;
-                selectedIndex = 2;
-                targetTower = piercingTowerPrefab;
-                piercingTowerSprite.color = Color.white;
-                description.text = "Piercing Tower";
-                break;
-
-            case TowerType.Sniper:
-                currentIndex = 3;
-                selectedIndex = 3;
-                targetTower = sniperTowerPrefab;
-                sniperTowerSprite.color = Color.white;
-                description.text = "Sniper Tower";
-                break;
-        }
-    }
-    void ToggleTowerSelection(int index)
-    {
-        if (selectedIndex == index)
-        {
-            selectedIndex = 0;
-            targetTower = null;
-
-            //ResetTowerBorders();
-
-            //if (currentIndex != 0)
-                //HighlightCurrentTower();
-
-            return;
-        }
-
-        selectedIndex = index;
-
-        ResetTowerBorders();
-
-        switch (index)
-        {
-            case 1:
-                targetTower = normalTowerPrefab;
-                //normalTowerSprite.color = Color.white;
-                //description.text = "Normal Tower";
-                break;
-
-            case 2:
-                targetTower = piercingTowerPrefab;
-                //piercingTowerSprite.color = Color.white;
-                //description.text = "Piercing Tower";
-                break;
-
-            case 3:
-                targetTower = sniperTowerPrefab;
-                //sniperTowerSprite.color = Color.white;
-                //description.text = "Sniper Tower";
-                break;
-        }
-    }
-    void HighlightCurrentTower()
-    {
-        switch (currentIndex)
-        {
-            case 1:
-                normalTowerSprite.color = Color.yellow;
-                break;
-
-            case 2:
-                piercingTowerSprite.color = Color.yellow;
-                break;
-
-            case 3:
-                sniperTowerSprite.color = Color.yellow;
-                break;
-        }
-    }
-    void ConfirmTower()
-    {
-        if (placementPoint == null)
-            return;
-
-        if (selectedIndex == 0)
-            return;
-
-        if (selectedIndex == currentIndex)
-            return;
-
-        ReplaceTower();
-    }
-    void ReplaceTower()
-    {
-
         if (placementPoint.CurrentTower != null)
         {
             aliveTowers.Remove(placementPoint.CurrentTower);
             Destroy(placementPoint.CurrentTower);
         }
 
-        if (aliveTowers.Count >= GameManager.Instance.selectedLevel.maxTowers)
-            return;
+        GameObject prefab = GetPrefabForType(type);
 
-        Vector3 spawnPos = placementPoint.transform.position + new Vector3(0, 0.5f, 0);
-        GameObject newTower = Instantiate(targetTower, spawnPos, Quaternion.identity);
+        if (prefab == null) return;
+
+        Vector3 spawnPos = placementPoint.transform.position;
+
+        GameObject newTower = Instantiate(prefab, spawnPos, Quaternion.identity);
+
         aliveTowers.Add(newTower);
         placementPoint.SetTower(newTower);
     }
     public void SetPlacementPoint(PlacementPoint point)
     {
         placementPoint = point;
+    }
+
+    private void ConfirmBuild()
+    {
+        TowerType selectedType = BuildUIManager.Instance.SelectedTowerType;
+        TowerType? currentType = null;
+
+        if (placementPoint.CurrentTower != null)
+        {
+            currentType = placementPoint.CurrentTower.GetComponent<Tower>().towerType;
+        }
+
+        if (selectedType == currentType)
+        {
+            BuildUIManager.Instance.CannotClose();
+            return;
+        }
+
+        if (placementPoint.CurrentTower == null)
+        {
+            PlaceTower(selectedType, placementPoint.transform);
+        }
+        else
+        {
+            ReplaceTower(selectedType);
+        }
+
+        ExitBuildMode();
     }
 }

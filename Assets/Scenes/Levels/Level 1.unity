@@ -141,15 +141,15 @@ PrefabInstance:
     - target: {fileID: 1658160836868666128, guid: 0e86aff0b7989764dbbd268313774664, type: 3}
       propertyPath: normalTowerSprite
       value: 
-      objectReference: {fileID: 656435115}
+      objectReference: {fileID: 0}
     - target: {fileID: 1658160836868666128, guid: 0e86aff0b7989764dbbd268313774664, type: 3}
       propertyPath: sniperTowerSprite
       value: 
-      objectReference: {fileID: 656435113}
+      objectReference: {fileID: 0}
     - target: {fileID: 1658160836868666128, guid: 0e86aff0b7989764dbbd268313774664, type: 3}
       propertyPath: piercingTowerSprite
       value: 
-      objectReference: {fileID: 656435114}
+      objectReference: {fileID: 0}
     - target: {fileID: 2611789595194453044, guid: 0e86aff0b7989764dbbd268313774664, type: 3}
       propertyPath: m_Name
       value: Player
@@ -312,39 +312,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07843ab7630238f4d87f1c3db9eb4a45, type: 3}
---- !u!114 &656435113 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 938544580278320610, guid: 07843ab7630238f4d87f1c3db9eb4a45, type: 3}
-  m_PrefabInstance: {fileID: 656435112}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
---- !u!114 &656435114 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5402003832487664282, guid: 07843ab7630238f4d87f1c3db9eb4a45, type: 3}
-  m_PrefabInstance: {fileID: 656435112}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
---- !u!114 &656435115 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7904692526701459228, guid: 07843ab7630238f4d87f1c3db9eb4a45, type: 3}
-  m_PrefabInstance: {fileID: 656435112}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1001 &941540124
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -445,6 +412,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1640498896086778772, guid: f5a8274a35291fb4894a74ff803d8810, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.8899994
+      objectReference: {fileID: 0}
+    - target: {fileID: 1640498896086778772, guid: f5a8274a35291fb4894a74ff803d8810, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -8.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2961633112398719638, guid: f5a8274a35291fb4894a74ff803d8810, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -484,6 +459,14 @@ PrefabInstance:
     - target: {fileID: 2961633112398719638, guid: f5a8274a35291fb4894a74ff803d8810, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4843145474350594655, guid: f5a8274a35291fb4894a74ff803d8810, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 4843145474350594655, guid: f5a8274a35291fb4894a74ff803d8810, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -8.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

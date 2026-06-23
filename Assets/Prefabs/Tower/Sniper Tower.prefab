@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 1383374965941298395}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.4260003, y: 0.6459998, z: 0}
+  m_LocalPosition: {x: -0.44, y: 1.83, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 6638454517332199781}
   - component: {fileID: 5397065716434872339}
   - component: {fileID: 4704877475793804046}
-  - component: {fileID: 8909653835281536802}
+  - component: {fileID: 6409781858839971670}
   m_Layer: 8
   m_Name: Sniper Tower
   m_TagString: Tower
@@ -151,7 +151,7 @@ Transform:
   m_GameObject: {fileID: 5585753233392504023}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.38, y: 0.75, z: 0}
+  m_LocalPosition: {x: -7.432, y: 0.787, z: 0}
   m_LocalScale: {x: 0.49978215, y: 0.8301852, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -242,7 +242,7 @@ MonoBehaviour:
   projectilePierces: 0
   hpBarFill: {fileID: 2152513619014960834}
   hpBarPivot: {fileID: 5375620637040641142}
---- !u!61 &8909653835281536802
+--- !u!61 &6409781858839971670
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -276,17 +276,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.03220737, y: -0.084020644}
+  m_Offset: {x: 0, y: 1.205}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 1.7, y: 2.41}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.569001, y: 2.0664144}
+  m_Size: {x: 1.7, y: 2.41}
   m_EdgeRadius: 0
 --- !u!1 &8125880914292797660
 GameObject:
@@ -314,7 +314,7 @@ Transform:
   m_GameObject: {fileID: 8125880914292797660}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.4402, y: 0.646, z: 0}
+  m_LocalPosition: {x: 0.436, y: 0.665, z: 0}
   m_LocalScale: {x: 0.95398575, y: 0.1232321, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
