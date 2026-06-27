@@ -133,6 +133,14 @@ public class TowerBuilder : MonoBehaviour
         aliveTowers.Add(newTower);
         placementPoint.SetTower(newTower);
     }
+    if (AliveCount() >= maxTowers)
+        return;
+
+    Vector3 spawnPos = placementPoint.transform.position + new Vector3(0, 0.5f, 0);
+    GameObject newTower = Instantiate(targetTower, spawnPos, Quaternion.identity);
+    aliveTowers.Add(newTower);
+    placementPoint.SetTower(newTower);
+}
     public void SetPlacementPoint(PlacementPoint point)
     {
         placementPoint = point;
