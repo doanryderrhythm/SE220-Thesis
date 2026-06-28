@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d4926a296d9b3b40be8b89583e3f0ed, type: 3}
   m_Name: PiercingTowerData
   m_EditorClassIdentifier: Assembly-CSharp::TowerStats
-  towerType: 0
+  towerType: 1
   towerHP: 100
   range: 5
   fireRate: 1

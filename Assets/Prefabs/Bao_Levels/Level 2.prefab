@@ -1511,7 +1511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aed2cb93a85b30b4f85115878bc981fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyTimer
-  isStarted: 0
+  isStarted: 1
   isOutOfSessions: 0
   timerText: {fileID: 3825908483404091450}
   waveSessions:

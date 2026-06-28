@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 3328307602371291274}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.44599992, y: 0.63200057, z: 0}
+  m_LocalPosition: {x: -0.452, y: 1.835, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 5131857967580707261}
   - component: {fileID: 1821314801607958874}
   - component: {fileID: 653840214770074296}
-  - component: {fileID: 2357125205034602399}
+  - component: {fileID: 7025518464751800805}
   m_Layer: 8
   m_Name: 'Pierce Tower '
   m_TagString: Tower
@@ -326,14 +326,14 @@ MonoBehaviour:
   projectilePrefab: {fileID: 987095622757033157, guid: d26f3a4890fc4464b92094f416961025, type: 3}
   islosing: 0
   enemyTag: Enemy
-  towerStats: {fileID: 11400000, guid: 8aa77dafa08be5d41be002a64a09e451, type: 2}
+  towerStats: {fileID: 11400000, guid: 332edb4df7bdad54ab63f9016dd4cf0a, type: 2}
   range: 5
   fireRate: 1
   projectileDamage: 5
   projectilePierces: 0
   hpBarFill: {fileID: 2629089275243248361}
   hpBarPivot: {fileID: 6052800135157326902}
---- !u!61 &2357125205034602399
+--- !u!61 &7025518464751800805
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -367,15 +367,15 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.0052664876, y: 0.045133114}
+  m_Offset: {x: 0, y: 1.205}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 1.7, y: 2.41}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.5792943, y: 2.3088627}
+  m_Size: {x: 1.7, y: 2.41}
   m_EdgeRadius: 0

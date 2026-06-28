@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4799107890813387201}
   - component: {fileID: 4530405820276173385}
   - component: {fileID: 2999517768242568120}
-  - component: {fileID: 7415937758571672751}
+  - component: {fileID: 3379494302169436024}
   m_Layer: 8
   m_Name: Normal Tower
   m_TagString: Tower
@@ -119,7 +119,7 @@ MonoBehaviour:
   projectilePierces: 0
   hpBarFill: {fileID: 4728312078172205684}
   hpBarPivot: {fileID: 4619644348059462038}
---- !u!61 &7415937758571672751
+--- !u!61 &3379494302169436024
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -153,17 +153,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.037003398, y: -0.15362248}
+  m_Offset: {x: 0, y: 1.205}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 1.7, y: 2.41}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.518048, y: 2.0381637}
+  m_Size: {x: 1.7, y: 2.41}
   m_EdgeRadius: 0
 --- !u!1 &789433288711873625
 GameObject:
@@ -372,7 +372,7 @@ Transform:
   m_GameObject: {fileID: 7831455904438423916}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.436, y: 0.64199996, z: 0}
+  m_LocalPosition: {x: -0.448, y: 1.86, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
