@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: UpGun
   m_EditorClassIdentifier: Assembly-CSharp::GunStats
   gunType: 1
-  shootSpeed: 30
+  shootSpeed: 4
   shootRate: 1.5
