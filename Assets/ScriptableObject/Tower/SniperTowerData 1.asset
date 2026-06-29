@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d4926a296d9b3b40be8b89583e3f0ed, type: 3}
   m_Name: SniperTowerData 1
   m_EditorClassIdentifier: Assembly-CSharp::TowerStats
-  towerType: 2
+  towerType: 0
   towerHP: 100
-  range: 6
-  fireRate: 0.5
-  projectileDamage: 10
+  range: 50
+  fireRate: 1
+  projectileDamage: 5
   projectilePierces: 0
   cost: 0
   upgradeCost: 0

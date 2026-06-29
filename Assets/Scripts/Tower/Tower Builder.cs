@@ -133,6 +133,7 @@ public class TowerBuilder : MonoBehaviour
         aliveTowers.Add(newTower);
         placementPoint.SetTower(newTower);
     }
+
     public void SetPlacementPoint(PlacementPoint point)
     {
         placementPoint = point;

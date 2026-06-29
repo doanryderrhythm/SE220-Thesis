@@ -22,4 +22,4 @@ MonoBehaviour:
   attackcooldown: 1
   attackRange: 1
   targetedTower: {fileID: 0}
-  harmStats: {fileID: 0}
+  harmStats: {fileID: 11400000, guid: dc2bcb889aa735844959a3df1484405e, type: 2}
