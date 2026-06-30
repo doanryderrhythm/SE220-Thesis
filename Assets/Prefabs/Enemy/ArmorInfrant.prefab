@@ -284,6 +284,7 @@ MonoBehaviour:
   waypoints: []
   enenmyStatus: 0
   Si: {fileID: 6411737191020833447}
+  explosionPrefab: {fileID: 1603296773179657357, guid: 9133dc7ecc8edda4fb10aaaf2db3c25b, type: 3}
   isDead: 0
 --- !u!114 &-1777612011574254077
 MonoBehaviour:

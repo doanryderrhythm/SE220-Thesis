@@ -289,6 +289,7 @@ MonoBehaviour:
   - {fileID: 0}
   enenmyStatus: 0
   Si: {fileID: 8868915864196979128}
+  explosionPrefab: {fileID: 1603296773179657357, guid: bc69d126d90d1284cb174830285bb2d7, type: 3}
   isDead: 0
 --- !u!114 &4272095431053019569
 MonoBehaviour:

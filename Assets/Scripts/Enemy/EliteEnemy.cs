@@ -47,6 +47,8 @@ public class EliteEnemy : MonoBehaviour
   [SerializeField] private GameObject arrowPrefab;
     public int enenmyStatus;
     private PlayerController targetedPlayer; // Reference to the target player (if needed)
+
+    [SerializeField] ParticleSystem explosionPrefab;
     
 private HarmData harmData;
      void Start()
@@ -130,7 +132,22 @@ if (type == EliteEnemyType.Excutioner)
     }
     
 }
-void ExplodeOnDeath()
+
+    private void OnDestroy()
+    {
+        if (!gameObject.scene.isLoaded)
+            return;
+
+        SpawnExplosion();
+    }
+
+    void SpawnExplosion()
+    {
+        AudioManager.Instance.InstantiateSFX(AudioManager.Instance.enemyDeadSound);
+        Instantiate(explosionPrefab.gameObject, transform.position, Quaternion.identity);
+    }
+
+    void ExplodeOnDeath()
     {
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
         foreach (Collider2D hit in hitColliders)

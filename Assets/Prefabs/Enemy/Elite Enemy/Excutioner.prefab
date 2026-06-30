@@ -200,6 +200,7 @@ MonoBehaviour:
   Si: {fileID: 5657116951904443352}
   arrowPrefab: {fileID: 0}
   enenmyStatus: 0
+  explosionPrefab: {fileID: 1603296773179657357, guid: 0d11e5b56d5a37d44aecd2e502b6701d, type: 3}
 --- !u!1 &3828461523926749767
 GameObject:
   m_ObjectHideFlags: 0

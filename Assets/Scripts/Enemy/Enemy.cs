@@ -36,6 +36,8 @@ public int enenmyStatus;
     private SpriteRenderer sr; 
  [SerializeField] private SpriteRenderer Si; // Reference to the arrow prefab for Archer attacks
  private HarmData harmData;
+
+    [SerializeField] ParticleSystem explosionPrefab;
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
@@ -100,11 +102,24 @@ else
 
     isDead = true;
     speed = 0f;
-        AudioManager.Instance.InstantiateSFX(AudioManager.Instance.enemyDeadSound);
        GameManager.Instance.DeleteEnemy(this);
         GameEvent.OnEnemyKilled?.Invoke();
     Destroy(gameObject, 0.3f);
-}
+    }
+
+    private void OnDestroy()
+    {
+        if (!gameObject.scene.isLoaded)
+            return;
+
+        SpawnExplosion();
+    }
+
+    void SpawnExplosion()
+    {
+        AudioManager.Instance.InstantiateSFX(AudioManager.Instance.enemyDeadSound);
+        Instantiate(explosionPrefab.gameObject, transform.position, Quaternion.identity);
+    }
 
     public void setupEnemyStats()
     {
