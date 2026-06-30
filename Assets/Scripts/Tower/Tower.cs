@@ -201,6 +201,7 @@ public void DisableShooting(float duration)
                 GameEvent.OnGameLost.Invoke();
                 Debug.Log("Game Over! Nexus destroyed.");
             }
+            AudioManager.Instance.InstantiateSFX(AudioManager.Instance.destroyTowerSound);
             Destroy(gameObject);
         }
     }

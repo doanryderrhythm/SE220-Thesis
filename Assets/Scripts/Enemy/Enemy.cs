@@ -100,6 +100,7 @@ else
 
     isDead = true;
     speed = 0f;
+        AudioManager.Instance.InstantiateSFX(AudioManager.Instance.enemyDeadSound);
        GameManager.Instance.DeleteEnemy(this);
         GameEvent.OnEnemyKilled?.Invoke();
     Destroy(gameObject, 0.3f);

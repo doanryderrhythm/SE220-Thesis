@@ -28,6 +28,11 @@ public class AudioManager : MonoBehaviour
     public AudioClip platformerPlayerDamageSound;
     public AudioClip platformerPlayerDeadSound;
     public AudioClip platformerPlayerShootSound;
+    [Space(10.0f)]
+    public AudioClip buildTowerSound;
+    public AudioClip destroyTowerSound;
+    [Space(10.0f)]
+    public AudioClip enemyDeadSound;
 
     [Header("Loop SFX")]
     public AudioClip platformerPlayerMoveSound;

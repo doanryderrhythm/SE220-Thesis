@@ -53,7 +53,10 @@ MonoBehaviour:
   platformerPlayerJumpSound: {fileID: 8300000, guid: 82c39ab1640e60e4ca1e727f55c49248, type: 3}
   platformerPlayerDamageSound: {fileID: 8300000, guid: 4540074018f3994429dcb4a54ca3a349, type: 3}
   platformerPlayerDeadSound: {fileID: 8300000, guid: e22ed511e94973740a5b0c62ad8ce2db, type: 3}
-  platformerPlayerShootSound: {fileID: 8300000, guid: c8572415d93b1dc4eb9d071e2c43bdc3, type: 3}
+  platformerPlayerShootSound: {fileID: 8300000, guid: 4183451c454eada42be2dfbbf53013cf, type: 3}
+  buildTowerSound: {fileID: 8300000, guid: 8d4f87c168fee0949b4da5c5be195f81, type: 3}
+  destroyTowerSound: {fileID: 8300000, guid: 4042df1383770b54984c760615da176f, type: 3}
+  enemyDeadSound: {fileID: 8300000, guid: c6be566d6cccd3e4db6033cafd6e4303, type: 3}
   platformerPlayerMoveSound: {fileID: 8300000, guid: 4df4a323e33dbc64fa634d543eba85d8, type: 3}
 --- !u!82 &8285770209846189334
 AudioSource:

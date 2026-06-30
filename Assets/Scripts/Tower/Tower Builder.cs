@@ -98,6 +98,8 @@ public class TowerBuilder : MonoBehaviour
         aliveTowers.Add(newTower);
         placementPoint.SetTower(newTower);
 
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.buildTowerSound);
+
         ConfirmBuild();
     }
 
