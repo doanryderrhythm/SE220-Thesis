@@ -70,6 +70,11 @@ public class PlayerController : MonoBehaviour
         float confirmedXVelocity = moveRate * ValueStorer.moveSpeed;
         rb.linearVelocityX = confirmedXVelocity;
 
+        if (confirmedXVelocity != 0f && wasGrounded)
+            AudioManager.Instance.PlayLoopSFX(AudioManager.Instance.platformerPlayerMoveSound, 0.25f);
+        else
+            AudioManager.Instance.StopLoopSFX();
+
         ChangeColliderShape(moveRate);
     }
 
@@ -117,6 +122,8 @@ public class PlayerController : MonoBehaviour
 
             jumpBufferTime = 0;
 
+            AudioManager.Instance.InstantiateSFX(AudioManager.Instance.platformerPlayerJumpSound, 0.4f);
+
             ShootBullet(true);
         }
         else if (playerJumpInput.action.WasReleasedThisFrame() && rb.linearVelocityY > 0)
@@ -142,7 +149,11 @@ public class PlayerController : MonoBehaviour
             jumpCount = ValueStorer.maxJumpCount;
         }
 
+        bool legacyGrounded = wasGrounded;
         wasGrounded = hitDetected;
+
+        if (wasGrounded && legacyGrounded != wasGrounded)
+            AudioManager.Instance.InstantiateSFX(AudioManager.Instance.platformerPlayerLandSound, 2f);
     }
 
     void ChangeColliderShape(float moveRate)
@@ -293,6 +304,8 @@ if (IsInBuildMode)
                 InstantiateBullet(barrel.position - new Vector3(0, 0.05f, 0));
             }
         }
+
+        AudioManager.Instance.InstantiateSFX(AudioManager.Instance.platformerPlayerShootSound, 0.25f);
     }
 
     void InstantiateBullet(Vector3 pos)
@@ -347,13 +360,19 @@ if (IsInBuildMode)
         Debug.Log(health);
 
         if (health <= 0)
+        {
             DestroyPlayer();
+            return;
+        }
+
+        AudioManager.Instance.InstantiateSFX(AudioManager.Instance.platformerPlayerDamageSound);
     }
 
     public void DestroyPlayer()
     {
         isDead = true;
         Instantiate(deadParticles.gameObject, transform.position, Quaternion.identity);
+        AudioManager.Instance.InstantiateSFX(AudioManager.Instance.platformerPlayerDeadSound);
         GameEvent.OnGameLost.Invoke();
         Destroy(gameObject);
     }
