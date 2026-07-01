@@ -180,7 +180,7 @@ MonoBehaviour:
   SFXLoopSource: {fileID: 8285770209846189334}
   SFXPrefab: {fileID: 8489413633140990553, guid: bda6e257e6b39244ea2e2710810bacba, type: 3}
   platformerPlayerLandSound: {fileID: 8300000, guid: 3a623c05d8fa92848a1298b5a745d857, type: 3}
-  platformerPlayerJumpSound: {fileID: 8300000, guid: 82c39ab1640e60e4ca1e727f55c49248, type: 3}
+  platformerPlayerJumpSound: {fileID: 8300000, guid: 53778f9dd33992c419e9745db0402f38, type: 3}
   platformerPlayerDamageSound: {fileID: 8300000, guid: 4540074018f3994429dcb4a54ca3a349, type: 3}
   platformerPlayerDeadSound: {fileID: 8300000, guid: e22ed511e94973740a5b0c62ad8ce2db, type: 3}
   platformerPlayerShootSound: {fileID: 8300000, guid: 4183451c454eada42be2dfbbf53013cf, type: 3}
