@@ -8,4 +8,9 @@ public class MainMenuManager : MonoBehaviour
         GameManager.Instance.levelIndex = index;
         SceneManager.LoadScene("Gameplay");
     }
+
+    private void Awake()
+    {
+        GameEvent.OnPlayBGM?.Invoke(BGMType.MainMenu);
+    }
 }
