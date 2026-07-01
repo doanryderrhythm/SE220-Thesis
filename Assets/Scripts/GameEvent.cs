@@ -21,4 +21,6 @@ public static class GameEvent
 
     public static Action OnCloseBuildMenu;
     public static Action<PlacementPoint> OnOpenBuildMenu;
+
+    public static Action<BGMType> OnPlayBGM;
 }

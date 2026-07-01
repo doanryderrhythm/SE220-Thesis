@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
         GameEvent.OnRetire -= Retire;
 
         GameEvent.OnGameLost -= CheckLose;
+
     }
 
     #region GAMEPLAY
@@ -158,6 +159,7 @@ public class GameManager : MonoBehaviour
         selectedLevel = levelListener.GetLevel(levelIndex);
         Instantiate(selectedLevel.environment.gameObject);
         spawnPoint = selectedLevel.environment.GetSpawnPoint();
+        GameEvent.OnPlayBGM?.Invoke(BGMType.Normal);
 
         timers = new List<EnemyTimer>();
         enemySpawners = new List<EnemySpawner>();
@@ -215,6 +217,7 @@ public class GameManager : MonoBehaviour
             return;
 
         isStarted = true;
+        GameEvent.OnPlayBGM?.Invoke(BGMType.Terrain);
     }
 
     void CheckWaveStatus()
@@ -227,6 +230,7 @@ public class GameManager : MonoBehaviour
             return;
 
         GameEvent.OnWaveFinished?.Invoke();
+        GameEvent.OnPlayBGM?.Invoke(BGMType.Normal);
     }
 
     void FinishWave()
@@ -239,7 +243,6 @@ public class GameManager : MonoBehaviour
 
         if (!enemySpawners.All(spawner => spawner.isFinishedSpawn))
             return;
-
         CheckWin();
     }
 

@@ -1,5 +1,11 @@
 using UnityEngine;
 
+public enum BGMType
+{
+    MainMenu,
+    Normal,
+    Terrain,
+}
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
@@ -37,6 +43,13 @@ public class AudioManager : MonoBehaviour
     [Header("Loop SFX")]
     public AudioClip platformerPlayerMoveSound;
 
+    [Header("BGM")]
+    public AudioClip icyBGM;
+    public AudioClip normalBGM; 
+    public AudioClip terrainBGM; 
+    
+    [SerializeField] private AudioSource BGMSource;
+
     public void PlaySFX(AudioClip sfx)
     {
         SFXSource.PlayOneShot(sfx);
@@ -73,5 +86,42 @@ public class AudioManager : MonoBehaviour
         audioSource.Play();
         audioSource.pitch = Random.Range(1f, 1f + pitchOffset);
         Destroy(audioGO, audioSource.clip.length);
+    }
+    private void OnEnable()
+    {
+        GameEvent.OnPlayBGM += OnPlayBGM;
+    }
+
+    private void OnDisable()
+    {
+        GameEvent.OnPlayBGM -= OnPlayBGM;
+    }
+    void OnPlayBGM(BGMType type)
+    {
+        Debug.Log(type);
+        switch (type)
+        {
+            case BGMType.MainMenu:
+                PlayBGM(icyBGM);
+                break;
+
+            case BGMType.Normal:
+                PlayBGM(normalBGM);
+                break;
+
+            case BGMType.Terrain:
+                PlayBGM(terrainBGM);
+                break;
+        }
+    }
+
+    void PlayBGM(AudioClip clip)
+    {
+        if (BGMSource.clip == clip && BGMSource.isPlaying)
+            return;
+        BGMSource.Stop();
+        BGMSource.clip = clip;
+        BGMSource.loop = true;
+        BGMSource.Play();
     }
 }
