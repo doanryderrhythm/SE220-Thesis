@@ -27,6 +27,8 @@ public class PauseManager : MonoBehaviour
         cg.interactable = true;
         cg.blocksRaycasts = true;
 
+        GameManager.Instance.isPaused = true;
+
         Time.timeScale = 0f;
     }
 
@@ -36,16 +38,20 @@ public class PauseManager : MonoBehaviour
         cg.interactable = false;
         cg.blocksRaycasts = false;
 
+        GameManager.Instance.isPaused = false;
+
         Time.timeScale = 1f;
     }
 
     public void Retry()
     {
+        GameManager.Instance.isPaused = false;
         GameEvent.OnRetry.Invoke();
     }
 
     public void Retire()
     {
+        GameManager.Instance.isPaused = false;
         GameEvent.OnRetire.Invoke();
     }
 }

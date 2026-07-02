@@ -276,9 +276,15 @@ if (IsInBuildMode)
         ManageJump();
 
         if (Keyboard.current != null)
-        {   
+        {
             if (Keyboard.current.escapeKey.wasPressedThisFrame)
-                GameEvent.OnPaused.Invoke();
+            {
+                TowerBuilder towerBuilder = FindFirstObjectByType<TowerBuilder>();
+                if (towerBuilder != null && !towerBuilder.IsBuildMode)
+                {
+                    GameEvent.OnPaused.Invoke();
+                }
+            }
         }
     }
 

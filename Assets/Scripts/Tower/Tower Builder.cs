@@ -36,7 +36,8 @@ public class TowerBuilder : MonoBehaviour
         {
             if (!isBuildMode)
             {
-                EnterBuildMode();
+                if (!GameManager.Instance.isPaused)
+                    EnterBuildMode();
             }
             else
             {

@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Transform spawnPoint;
     [SerializeField] Vector2 safePosition;
     [Header("In-game stats")]
+    public bool isPaused = false;
     public bool isStarted = false;
     [SerializeField] List<EnemyTimer> timers;
     [SerializeField] List<EnemySpawner> enemySpawners;
@@ -150,7 +151,11 @@ public class GameManager : MonoBehaviour
             Keyboard.current != null &&
             Keyboard.current.enterKey.wasPressedThisFrame)
         {
-            GameEvent.OnWaveStarted?.Invoke();
+            TowerBuilder towerBuilder = FindFirstObjectByType<TowerBuilder>();
+            if (towerBuilder != null && !towerBuilder.IsBuildMode)
+            {
+                GameEvent.OnWaveStarted?.Invoke();
+            }
         }
     }
 

@@ -119,6 +119,7 @@ MonoBehaviour:
   projectilePierces: 0
   hpBarFill: {fileID: 4728312078172205684}
   hpBarPivot: {fileID: 4619644348059462038}
+  explosionPrefab: {fileID: 8898239306843008437, guid: bf8712f1a58411148b62e01132266557, type: 3}
 --- !u!61 &3379494302169436024
 BoxCollider2D:
   m_ObjectHideFlags: 0

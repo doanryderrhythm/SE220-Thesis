@@ -201,7 +201,7 @@ public void DisableShooting(float duration)
                 GameEvent.OnGameLost.Invoke();
                 Debug.Log("Game Over! Nexus destroyed.");
             }
-            AudioManager.Instance.InstantiateSFX(AudioManager.Instance.destroyTowerSound);
+            SpawnExplosion();
             Destroy(gameObject);
         }
     }
@@ -223,6 +223,14 @@ public void DisableShooting(float duration)
         }
     }
 
+    [SerializeField] ParticleSystem explosionPrefab;
+
+
+    void SpawnExplosion()
+    {
+        AudioManager.Instance.InstantiateSFX(AudioManager.Instance.destroyTowerSound);
+        Instantiate(explosionPrefab.gameObject, transform.position, Quaternion.identity);
+    }
 
     void DrawCircle(Vector3 center, float radius, int segments)
     {
