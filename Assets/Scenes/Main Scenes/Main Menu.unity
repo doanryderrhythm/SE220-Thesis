@@ -657,6 +657,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8285770209846189334, guid: bc3c417b35c953d4cb44ebadf9646a68, type: 3}
+      propertyPath: rolloffMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285770209846189334, guid: bc3c417b35c953d4cb44ebadf9646a68, type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].inSlope
+      value: -1.8900992
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285770209846189334, guid: bc3c417b35c953d4cb44ebadf9646a68, type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].outSlope
+      value: -1.8900992
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285770209846189334, guid: bc3c417b35c953d4cb44ebadf9646a68, type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].outWeight
+      value: 0.045919344
+      objectReference: {fileID: 0}
     - target: {fileID: 8500616775794775773, guid: bc3c417b35c953d4cb44ebadf9646a68, type: 3}
       propertyPath: m_Name
       value: Audio Manager

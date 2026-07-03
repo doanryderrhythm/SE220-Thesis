@@ -27,6 +27,7 @@ public class AudioManager : MonoBehaviour
 
     [Header("Prefabs")]
     [SerializeField] AudioSource SFXPrefab;
+    [SerializeField] AudioSource SFX3DPrefab;
 
     [Header("SFX")]
     public AudioClip platformerPlayerLandSound;
@@ -38,6 +39,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip buildTowerSound;
     public AudioClip destroyTowerSound;
     [Space(10.0f)]
+    public AudioClip enemyHitSound;
     public AudioClip enemyDeadSound;
 
     [Header("Loop SFX")]
@@ -77,6 +79,9 @@ public class AudioManager : MonoBehaviour
 
     public void InstantiateSFX(AudioClip clip, float pitchOffset = 0f)
     {
+        if (clip == null)
+            return;
+
         GameObject audioGO = Instantiate(SFXPrefab.gameObject);
         AudioSource audioSource = audioGO.GetComponent<AudioSource>();
         if (audioSource == null)
@@ -87,6 +92,23 @@ public class AudioManager : MonoBehaviour
         audioSource.pitch = Random.Range(1f, 1f + pitchOffset);
         Destroy(audioGO, audioSource.clip.length);
     }
+
+    public void InstantiateSFX3D(AudioClip clip, Vector3 pos, float pitchOffset = 0f)
+    {
+        if (clip == null)
+            return;
+
+        GameObject audioGO = Instantiate(SFX3DPrefab.gameObject, pos, Quaternion.identity);
+        AudioSource audioSource = audioGO.GetComponent<AudioSource>();
+        if (audioSource == null)
+            return;
+
+        audioSource.clip = clip;
+        audioSource.Play();
+        audioSource.pitch = Random.Range(1f, 1f + pitchOffset);
+        Destroy(audioGO, audioSource.clip.length);
+    }
+
     private void OnEnable()
     {
         GameEvent.OnPlayBGM += OnPlayBGM;

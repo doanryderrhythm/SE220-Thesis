@@ -174,7 +174,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1611442853
-  m_SortingLayer: 5
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -7132172409892320828, guid: fcc145b1ffee43247956ec0a21fcf983, type: 3}
@@ -289,6 +289,7 @@ MonoBehaviour:
   - {fileID: 0}
   enenmyStatus: 0
   Si: {fileID: 8868915864196979128}
+  hitPrefab: {fileID: 1603296773179657357, guid: d53ec52ac9078ab46bf82fbc601d6d9e, type: 3}
   explosionPrefab: {fileID: 1603296773179657357, guid: bc69d126d90d1284cb174830285bb2d7, type: 3}
   isDead: 0
 --- !u!114 &4272095431053019569

@@ -37,6 +37,7 @@ public int enenmyStatus;
  [SerializeField] private SpriteRenderer Si; // Reference to the arrow prefab for Archer attacks
  private HarmData harmData;
 
+    [SerializeField] ParticleSystem hitPrefab;
     [SerializeField] ParticleSystem explosionPrefab;
     void Start()
     {
@@ -75,19 +76,28 @@ else
 
     public void TakeDamage(float damage, bool pierce)
     {
-        if ( !pierce && armor > 0)
+        if (!pierce && armor > 0)
         {
             float armorAbsorb = Mathf.Min(armor, damage);
             armor -= armorAbsorb;
             damage -= armorAbsorb;
         }
-else
-        health -= damage;
+        else
+        {
+            health -= damage;
+            SpawnHit();
+        }
 
         if (health <= 0f)
         {
             Die();
         }
+    }
+
+    void SpawnHit()
+    {
+        AudioManager.Instance.InstantiateSFX3D(AudioManager.Instance.enemyHitSound, transform.position, -0.4f);
+        Instantiate(hitPrefab.gameObject, transform.position, Quaternion.identity);
     }
 
     public bool isDead = false;

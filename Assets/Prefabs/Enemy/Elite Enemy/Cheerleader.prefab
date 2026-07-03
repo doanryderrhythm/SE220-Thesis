@@ -82,7 +82,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1611442853
-  m_SortingLayer: 5
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -9091747917912986294, guid: 1568ce7a252874e4092df0efed766ded, type: 3}
@@ -199,6 +199,7 @@ MonoBehaviour:
   Si: {fileID: 8237947039893661004}
   arrowPrefab: {fileID: 0}
   enenmyStatus: 0
+  hitPrefab: {fileID: 1603296773179657357, guid: 73a3ca5e2826aba4fa97b11cbb46f3c4, type: 3}
   explosionPrefab: {fileID: 1603296773179657357, guid: 0d11e5b56d5a37d44aecd2e502b6701d, type: 3}
 --- !u!1 &6837354535506617306
 GameObject:

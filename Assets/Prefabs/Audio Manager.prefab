@@ -179,6 +179,7 @@ MonoBehaviour:
   SFXSource: {fileID: 8285770209846189334}
   SFXLoopSource: {fileID: 8285770209846189334}
   SFXPrefab: {fileID: 8489413633140990553, guid: bda6e257e6b39244ea2e2710810bacba, type: 3}
+  SFX3DPrefab: {fileID: 8489413633140990553, guid: 41d22ef6439b25f42bf5af65e32acf2e, type: 3}
   platformerPlayerLandSound: {fileID: 8300000, guid: 3a623c05d8fa92848a1298b5a745d857, type: 3}
   platformerPlayerJumpSound: {fileID: 8300000, guid: 53778f9dd33992c419e9745db0402f38, type: 3}
   platformerPlayerDamageSound: {fileID: 8300000, guid: 4540074018f3994429dcb4a54ca3a349, type: 3}
@@ -186,6 +187,7 @@ MonoBehaviour:
   platformerPlayerShootSound: {fileID: 8300000, guid: 4183451c454eada42be2dfbbf53013cf, type: 3}
   buildTowerSound: {fileID: 8300000, guid: 8d4f87c168fee0949b4da5c5be195f81, type: 3}
   destroyTowerSound: {fileID: 8300000, guid: 4042df1383770b54984c760615da176f, type: 3}
+  enemyHitSound: {fileID: 8300000, guid: 4d5e68c8ad6d3ef44be9c60b7e629fd0, type: 3}
   enemyDeadSound: {fileID: 8300000, guid: c6be566d6cccd3e4db6033cafd6e4303, type: 3}
   platformerPlayerMoveSound: {fileID: 8300000, guid: 4df4a323e33dbc64fa634d543eba85d8, type: 3}
   icyBGM: {fileID: 8300000, guid: a394d1806a5bb694a87ae0bcd4d366ca, type: 3}

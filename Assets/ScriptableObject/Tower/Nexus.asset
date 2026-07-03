@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Nexus
   m_EditorClassIdentifier: Assembly-CSharp::TowerStats
   towerType: 3
-  towerHP: 500
+  towerHP: 300
   range: 1
   fireRate: 1
   projectileDamage: 1

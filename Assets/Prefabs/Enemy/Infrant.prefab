@@ -174,7 +174,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1611442853
-  m_SortingLayer: 5
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -8924481267595063480, guid: f316b0c3e22a64b43bfa855bba3f6841, type: 3}
@@ -284,6 +284,7 @@ MonoBehaviour:
   waypoints: []
   enenmyStatus: 0
   Si: {fileID: 7782952410262899017}
+  hitPrefab: {fileID: 1603296773179657357, guid: dccab4062f6ef6d44bb0e570689469ff, type: 3}
   explosionPrefab: {fileID: 1603296773179657357, guid: c2a92f1f3d09f4a41876f4a76b99205a, type: 3}
   isDead: 0
 --- !u!114 &3545458280835064103
