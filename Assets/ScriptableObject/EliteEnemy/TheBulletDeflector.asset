@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TheBulletDeflector
   m_EditorClassIdentifier: Assembly-CSharp::EliteEnemyStats
   enemyType: 3
-  health: 10
+  health: 200
   speed: 2
   reward: 0
   armor: 0

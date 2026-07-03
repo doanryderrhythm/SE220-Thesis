@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TheExcutioner
   m_EditorClassIdentifier: Assembly-CSharp::EliteEnemyStats
   enemyType: 1
-  health: 100
+  health: 200
   speed: 1
   reward: 0
   armor: 0
