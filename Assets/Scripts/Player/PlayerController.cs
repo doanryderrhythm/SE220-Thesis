@@ -359,6 +359,7 @@ if (IsInBuildMode)
         isInvulnerable = true;
 
         health -= value;
+        UpdateHealthBar();
         if (health > 0)
             Instantiate(hurtParticles.gameObject, transform.position, Quaternion.identity);
 
@@ -487,5 +488,24 @@ if (IsInBuildMode)
             0.05f,
             gunStats.shootRate - shootRateBonus
         );
+    }
+    [Header("HP Bar Settings")]
+    [SerializeField] private float healthF = ValueStorer.defaultPlayerHealth;
+    public Transform hpBarPivot;    
+    public Transform hpBarFill;    
+
+
+    void UpdateHealthBar()
+    {
+        if (hpBarFill == null)
+            return;
+        float healthPercentage = Mathf.Clamp01(health / healthF);
+        hpBarFill.localScale = new Vector3(healthPercentage, 1f, 1f);
+    }
+
+    private void LateUpdate()
+    {
+        hpBarPivot.localRotation = Quaternion.identity;
+        hpBarPivot.localEulerAngles = new Vector3(0, -transform.eulerAngles.y, 0);
     }
 }
