@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     public bool isBuildingTower = false;
 
     [SerializeField] GameObject startBuildingCanvas;
+    bool isRetryCoroutineRunning = false;
 
     private void Awake()
     {
@@ -82,6 +83,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator AutoRetry()
     {
+        isRetryCoroutineRunning = true;
         yield return new WaitForSecondsRealtime(1.5f);
         Retry();
     }
@@ -145,7 +147,8 @@ public class GameManager : MonoBehaviour
             Destroy(enemy.gameObject);
 
         isLevelFinished = true;
-        StartCoroutine(AutoRetry());
+        if (!isRetryCoroutineRunning)
+            StartCoroutine(AutoRetry());
     }
 
     #endregion
@@ -172,6 +175,8 @@ public class GameManager : MonoBehaviour
 
     public void ReadyToPlay()
     {
+        isRetryCoroutineRunning = false;
+
         selectedLevel = levelListener.GetLevel(levelIndex);
         Instantiate(selectedLevel.environment.gameObject);
         spawnPoint = selectedLevel.environment.GetSpawnPoint();
