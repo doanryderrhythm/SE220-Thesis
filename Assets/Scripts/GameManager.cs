@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour
 
     public bool isBuildingTower = false;
 
+    [SerializeField] GameObject startBuildingCanvas;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -108,6 +110,8 @@ public class GameManager : MonoBehaviour
             return;
 
         isLevelFinished = true;
+        TMP_Text winText = startBuildingCanvas.GetComponentInChildren<TMP_Text>(true);
+        winText.text = "You successfully protected the Nexus tower!";
         Debug.Log("You beat the level!");
     }
 
@@ -173,6 +177,8 @@ public class GameManager : MonoBehaviour
         spawnPoint = selectedLevel.environment.GetSpawnPoint();
         GameEvent.OnPlayBGM?.Invoke(BGMType.Normal);
 
+        startBuildingCanvas = GameObject.FindGameObjectWithTag("UI Start Building");
+
         timers = new List<EnemyTimer>();
         enemySpawners = new List<EnemySpawner>();
         enemies = new List<Enemy>();
@@ -228,6 +234,9 @@ public class GameManager : MonoBehaviour
         if (isBuildingTower)
             return;
 
+        if (startBuildingCanvas)
+            startBuildingCanvas.SetActive(false);
+
         isStarted = true;
         GameEvent.OnPlayBGM?.Invoke(BGMType.Terrain);
     }
@@ -252,6 +261,9 @@ public class GameManager : MonoBehaviour
         timers.Clear();
         enemies.Clear();
         eliteEnemies.Clear();
+
+        if (startBuildingCanvas)
+            startBuildingCanvas.SetActive(true);
 
         if (!enemySpawners.All(spawner => spawner.isFinishedSpawn))
             return;

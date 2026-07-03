@@ -12,6 +12,7 @@ TagManager:
   - Bullet
   - DeflectedBullet
   - Projectile
+  - UI Start Building
   layers:
   - Default
   - TransparentFX
