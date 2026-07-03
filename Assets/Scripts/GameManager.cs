@@ -78,6 +78,12 @@ public class GameManager : MonoBehaviour
 
     #region GAMEPLAY
 
+    IEnumerator AutoRetry()
+    {
+        yield return new WaitForSecondsRealtime(1.5f);
+        Retry();
+    }
+
     void Retry()
     {
         Time.timeScale = 1f;
@@ -135,6 +141,7 @@ public class GameManager : MonoBehaviour
             Destroy(enemy.gameObject);
 
         isLevelFinished = true;
+        StartCoroutine(AutoRetry());
     }
 
     #endregion
